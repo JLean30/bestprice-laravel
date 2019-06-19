@@ -94,14 +94,18 @@ class RegisterController extends Controller
         DB::insert('insert into profiles(name, email, password, apellido) values(?,?,?,?)',[$nom, $ema, $pass, $apelli]); 
         return "actualizado";*/
     }
-       
-        
-       
-
-    public function returnArray(Request $request){
-        return $request->all();
-
+       //metodo sobreescrito de registerusers
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        return view('register');
     }
+       
 
+   
    
 }

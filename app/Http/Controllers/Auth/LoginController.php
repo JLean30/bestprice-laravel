@@ -21,6 +21,15 @@ class LoginController extends Controller
     use AuthenticatesUsers;
 
     /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showLoginForm()
+    {
+        return view('login');
+    }
+    /**
      * Where to redirect users after login.
      *
      * @var string
@@ -61,6 +70,21 @@ class LoginController extends Controller
     public function username()
     {
         return $this->username;
+    }
+
+    //metodos sobrescritos
+     /**
+     * Get the failed login response instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return back()->withError('Usuario o contraseña incorrecta');        
+        
     }
     
 }
