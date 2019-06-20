@@ -22,3 +22,4 @@ Route::get('/anadir-producto', 'ControladorPrincipal@viewAnadirProducto')->middl
 Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-producto')->middleware('auth');;
 Auth::routes();
 
+//prueba de comit
