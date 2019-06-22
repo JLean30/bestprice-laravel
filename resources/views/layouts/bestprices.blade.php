@@ -15,7 +15,7 @@
                 integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
                 crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        
+    <link rel="icon" href="img/icono.ico">
 
     <!-- Fonts -->
     <!-- Styles -->

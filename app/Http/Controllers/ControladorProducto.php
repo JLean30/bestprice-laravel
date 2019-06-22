@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
 class ControladorProducto extends Controller
@@ -29,12 +29,15 @@ class ControladorProducto extends Controller
     }
     //metodo agregar producto
     public function add(Request $request){
+        dd($request->file('photos'));
         //verificacion si el campo de la foto es valido osea la imagen esta subida?
-        if($request->file('photo')->isValid()){
+        if($request->file('photos')->isValid()){
             //instancia producto
             $product= new Product; 
             $product ->name = $request ->input('titulo');
             $product ->user_id = Auth::id();//obtencion del id del usuario logueado
+            //necesito hacer un foreach del array de imagenes mandado en el post. para guardarlos en bd y en store
+           // DB::insert('insert into img_product (product_id, image) values (?, ?)', [Auth::id(), $photos[$i]]);
             $product ->image = $request->photo->store('', 'products');//mueve la imagen al disco creado en FileSystem.php en la ruta img/products/
             $product ->maker = $request ->input('fabricante');
             $product ->category_id = $request ->input('select-category');
