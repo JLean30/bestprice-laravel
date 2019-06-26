@@ -29,21 +29,36 @@ class ControladorPrincipal extends Controller
     }
 
     public function viewProducto($id){
-        $products = Product::where('id', $id)->get();
+        $products = Product::where('id', $id)->with('images')->get();
+       
         if (!$products->isEmpty()) {
             $category = new Category;
         foreach ($products as $product) {
+            $images = $product->images;
+            $len= count($images);
+            $thubnails = array();
+            for($i=0;$i < $len;$i++){
+                if($i===0){
+                    $imagen = $images[$i]->image;
+                }else{
+
+                    array_push($thubnails, "/img/products/".$images[$i]->image);
+
+                }
+            }
+           $dueno= $product->user_id;
             $titulo = $product->name;
             $fabricante = $product->maker;
-            $imagen = $product->image;
             $telefono = $product->phone;
             $ubicacion = $product->location;
             $descripcion = $product->description;
+            $condicion = $product->condition;
+            $precio = $product->price;
              //llamada a relacion de categoria con productos
             $categoria = $category->with('products')->find($product->category_id)->name; 
             
         }
-        return view('producto', compact('titulo', 'imagen','fabricante','telefono','ubicacion','descripcion','categoria'));
+        return view('producto', compact('dueno','titulo', 'imagen','fabricante','telefono','ubicacion','descripcion','categoria','condicion','precio','thubnails'));
         }else {
             abort(404);
         
@@ -71,7 +86,12 @@ public function viewProfile($id){
     if (!$profiles->isEmpty()) {
     foreach ($profiles as $profile) {
         $datosUsuario = $user->with('profiles')->find($profile->user_id); 
-       
+        
+        $productos = $user->with('products')->find($profile->user_id);
+        dd($productos);
+        //foreach($products->products as $products_user){
+        
+        //}
         $usuario = $datosUsuario->username;
         $imagen = $profile->image;
         $descripcion = $profile->description;
@@ -84,9 +104,9 @@ public function viewProfile($id){
         }
          //llamada a relacion de profile con usuario
     }
-    $products= Product::where('user_id', $id);
+    
    
-    return view('profile', compact('imagen','usuario','descripcion','nombreCompleto','ubicacion','telefono','email','editar','products'));
+    return view('profile', compact('imagen','usuario','descripcion','nombreCompleto','ubicacion','telefono','email','editar','productos'));
     }else {
         abort(404);
     

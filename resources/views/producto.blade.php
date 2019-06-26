@@ -1,76 +1,100 @@
 @extends('layouts.bestprices')
 @section('content')
 <!--@inject('controller', 'App\Http\Controllers\ControladorPrincipal')-->
-        <div class="container-fluid">
-        
-                <div class="section-views shadow-sm mt-3">
-                                <div class="row justify-content-center">
-                                        <div class="col-xl-4 col-xs-12 float-right">
-                                                <div class="select-img">
-                                                        <img class="img-fluid" id="img" src="{{url('img/products/'.$imagen)}}" alt="{{$titulo}}">
-                                                     
-                                                </div>            
-                                                </div>
-                                        </div>
-                                        <div
-                                                class="col-xl-4 col-xs-12 container-form d-flex justify-content-right flex-column">
-                                                
-                                                <h1>{{$titulo}}</h1>
-                                                <h3>Fabricante</h3>
-                                                <p>{{$fabricante}}</p>
-                                                <h3>Categoria</h3>
-                                                <p>{{$categoria}}</p>
-                                                <h3>Telefono</h3>
-                                                <p>{{$telefono}}</p>
-                                                <h3>Ubicacion</h3>
-                                                <p>{{$ubicacion}}</p>
-                                        </div>
-                                </div>
-                                <div class="row justify-content-center">
-                                        <div class="col-xl-8 align-self-center">
-                                                <h3>Detalle</h3>
-                                                <ul>
-                                                        <li>
-                                                                <p>{{$descripcion}}</p>
-                                                        </li>
-                                                       
+<div class="section-views">
+                <div class="row justify-content-center">
+                        <h1>{{$titulo}}</h1>
+                </div>
+                <div class="row justify-content-center">
+                        <div class="col-lg-4 col-xs-12 float-right">
+                                <div class="select-img">
+                                        <p
+                                                class="tipoImg bg-dark text-light text-center position-absolute card-tipoProducto ">
+                                                {{$condicion}}</p>
+                                        
+                                      
+                                        <img class="img-fluid" id="img" src="/img/products/{{$imagen}}" alt="">
+                                       
+                                   
+                                        
+                                            
+                                        
+                                        <div class="row d-flex justify-content-around">
+                                                <ul class="list-inline" id="lista-img">
+                                                                @isset($thubnails)
+                                                            
+                                                               
+                                                                @for ($i = 0; $i < count($thubnails); $i++)
+                                                               
+                                                        <li class="list-inline-item"><img id="{{$i+1}}"
+                                                                        class="img-fluid" src={{$thubnails[$i]}}
+                                                                        alt="{{$titulo}}" width="100px"></li>
+                                                                 @endFor     
+                                                        @endIsset
+                                                        
                                                 </ul>
+                                               
                                         </div>
                                 </div>
+
+
+                               
+                                
+                        
+                                <div class="row d-flex flex-column">
+                                        <div class="row align-self-center mt-5">
+                                                <p class="">Añadido por <a href="/profile/{{$dueno}}"class="text-info">thanos</a></p>
+                                        </div>
+                                        <div class="row align-self-center mt-5">
+                                                <h1 class="text-right text-large text-danger">₡ {{$precio}}</h1>
+                                        </div>
+
+                                </div>
+                        </div>
+
+                        <div
+                                class="col-lg-4 col-xs-12 container-form d-flex justify-content-around flex-column">
+                                <h2>Fabricante</h2>
+                                <p>{{$fabricante}}</p>
+                                <h2>Categoria</h2>
+                                <p>{{$categoria}}</p>
+                                <h2>Telefono</h2>
+                                <p>{{$telefono}}</p>
+                                <h2>Tipo</h2>
+                                <p>{{$condicion}}</p>
+                                <h2>Ubicacion</h2>
+                                <p>{{$ubicacion}}</p>
+                        </div>
+                </div>
+                <div class="row justify-content-center">
+                        <div class="col-xl-8 align-self-center">
+                                <h2>Detalle</h2>
+                                 <p>{{$descripcion}}</p>
+                                   
+                        </div>
+                </div>
+                <div class="row justify-content-center mt-4">
+                        <button type="button" class="btn btn-primary" id="agregar-btn">Contactar Vendedor</button>
+                </div>
 
         </div>
 
        
                 
-       
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
         $(document).ready(function () {
-                $("#1").click(function (event) {
-                        event.preventDefault();
-                        var next_imagen = "img/msi.png";
-                        $("#img").attr("src", next_imagen);
+                $lista = $("body #lista-img").children("li").length;
+                console.log($lista);
+
+                for(var i = 1; i <= $lista; i++){
+                        $("#"+i).click(function (event) {
+                        ruta= $(this).attr('src');
+                        $("#img").attr("src", ruta);
+                        
                 });
-                $("#2").click(function (event) {
-                        event.preventDefault();
-                        var next_imagen = "img/msi2.png";
-                        $("#img").attr("src", next_imagen);
-                });
-                $("#3").click(function (event) {
-                        event.preventDefault();
-                        var next_imagen = "img/msi3.png";
-                        $("#img").attr("src", next_imagen);
-                });
-                $("#4").click(function (event) {
-                        event.preventDefault();
-                        var next_imagen = "img/msi4.png";
-                        $("#img").attr("src", next_imagen);
-                });
-                $("#5").click(function (event) {
-                        event.preventDefault();
-                        var next_imagen = "img/msi5.png";
-                        $("#img").attr("src", next_imagen);
-                });
+                }
         });
 </script>
 

@@ -3,14 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
+use App\Image;
+use Faker\Provider\cs_CZ\DateTime;
+use Illuminate\Support\Carbon;
+
 class ControladorProducto extends Controller
 {
     public function  __construct(){
         $this->middleware('auth');
+     
     }
+ 
     //validacion de los parametros enviados para su respectivo error falta implementar los valores son del user
     public function validator(array $data)
     {
@@ -29,23 +35,40 @@ class ControladorProducto extends Controller
     }
     //metodo agregar producto
     public function add(Request $request){
+        
+        $photos= $request->file('photos');
+        $len= count($photos);
+       
+        
         //verificacion si el campo de la foto es valido osea la imagen esta subida?
-        if($request->file('photo')->isValid()){
+        if($len != 0){
             //instancia producto
-            $product= new Product; 
+            $product= new Product;
             $product ->name = $request ->input('titulo');
             $product ->user_id = Auth::id();//obtencion del id del usuario logueado
-            $product ->image = $request->photo->store('', 'products');//mueve la imagen al disco creado en FileSystem.php en la ruta img/products/
             $product ->maker = $request ->input('fabricante');
             $product ->category_id = $request ->input('select-category');
             $product ->phone = $request ->input('telefono');
             $product ->location = $request ->input('ubicacion');
             $product ->description = $request ->input('detalle');
             $product ->condition = $request ->input('select-condition') ;
-            $product ->quantity = $request ->input('cantidad');
+            $product ->price = $request ->input('precio');
             $product ->status = 'pendiente';
             $product->save();//guarda producto
+           
+            for($i=0;$i<$len;$i++){
+                if($photos[$i] != ""){
+                    $images= new Image;
+                    $images->image = $photos[$i]->store('', 'products');
+                    $images->save();
+                    $product->images()->attach($images);
+                }
+                
+            
+            }
+        
         }
+        
         
     }
 
@@ -64,7 +87,7 @@ class ControladorProducto extends Controller
                 $product ->location = $request ->input('ubicacion');
                 $product ->description = $request ->input('detalle');
                 $product ->condition = $request ->input('select-condition') ;
-                $product ->quantity = $request ->input('cantidad');
+                $product ->price = $request ->input('precio');
                 $product ->status = 'pendiente';
                 $product->save();//guarda producto
             }else {
