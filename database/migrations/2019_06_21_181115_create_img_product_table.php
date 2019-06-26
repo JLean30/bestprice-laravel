@@ -13,11 +13,17 @@ class CreateImgProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('img_product', function (Blueprint $table) {
+        Schema::create('image_product', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->integer('product_id')->unsigned();//metodo para la relacion foranea
-                $table->integer('imagen');//src imagen
+                $table->integer("image_id")->unsigned();
+                
                 $table->timestamps();
+        });
+        Schema::table('image_product', function($table)
+    {
+        $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+        $table->foreign('image_id')->references('id')->on('images')->onDelete('cascade');
         });
     }
 
@@ -28,6 +34,6 @@ class CreateImgProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('img_product');
+        Schema::dropIfExists('image_product');
     }
 }
