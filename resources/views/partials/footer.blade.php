@@ -1,7 +1,7 @@
-<footer class="page-footer font-small bg-dark mt-5">
+<footer class="page-footer font-small bg-dark ">
 
         <!-- Footer Elements -->
-        <div class="container">
+        <div class="container mt-0">
       
           <!-- Grid row-->
           <div class="row">

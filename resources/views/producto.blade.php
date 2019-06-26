@@ -83,19 +83,22 @@
                 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-        $(document).ready(function () {
-                $lista = $("body #lista-img").children("li").length;
-                console.log($lista);
-
-                for(var i = 1; i <= $lista; i++){
-                        $("#"+i).click(function (event) {
-                        ruta= $(this).attr('src');
-                        $("#img").attr("src", ruta);
-                        
+        <script>
+                $(document).ready(function () {
+                        $lista = $("body #lista-img").children("li").length;
+                        console.log($lista);
+        
+                        for(var i = 1; i <= $lista; i++){
+                                $("#"+i).click(function (event) {
+                                ruta= $(this).attr('src');
+                                rutaImg= $("#img").attr('src');
+                                $("#"+i).attr("src", rutaImg);
+                                $("#img").attr("src", ruta);
+                                
+                                
+                        });
+                        }
                 });
-                }
-        });
-</script>
+        </script>
 
 @endsection

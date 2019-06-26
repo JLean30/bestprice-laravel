@@ -13,7 +13,10 @@ class ControladorPrincipal extends Controller
    
 
     public function viewHome(){
-        return view('index');
+        $products = Product::with('images','user')->get();
+        
+        
+        return view('index',compact('products'));
     }
 
     public function viewAdmin(Request $request){
@@ -80,33 +83,27 @@ class ControladorPrincipal extends Controller
 
 public function viewProfile($id){
     $profiles = Profile::where('id', $id)->get();
-    $user = new User;
-    $product = new Product;
     $editar= false;
     if (!$profiles->isEmpty()) {
     foreach ($profiles as $profile) {
-        $datosUsuario = $user->with('profiles')->find($profile->user_id); 
-        
-        $productos = $user->with('products')->find($profile->user_id);
-        dd($productos);
-        //foreach($products->products as $products_user){
-        
-        //}
-        $usuario = $datosUsuario->username;
-        $imagen = $profile->image;
-        $descripcion = $profile->description;
-        $nombreCompleto= $datosUsuario->name." ".$datosUsuario->lastName ;
-        $ubicacion=$datosUsuario->location;
-        $telefono= $datosUsuario->phone;
-        $email=$datosUsuario->email;
-        if(Auth::id() === $profile->user_id){
-            $editar= true;
-        }
-         //llamada a relacion de profile con usuario
+        $users = User::with('profiles','products.images')->find($profile->user_id);
     }
     
+    $profile= $users->profiles;
    
-    return view('profile', compact('imagen','usuario','descripcion','nombreCompleto','ubicacion','telefono','email','editar','productos'));
+
+    
+    $products = $users->products;
+
+    
+        if(Auth::id() === $id){
+            $editar= true;
+        }
+        
+    
+    
+   
+    return view('profile', compact('editar','users','products','profile'));
     }else {
         abort(404);
     
