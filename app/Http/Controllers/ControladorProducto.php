@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Image;
+use Illuminate\Support\Facades\Storage;
 use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Support\Carbon;
 
@@ -72,15 +73,26 @@ class ControladorProducto extends Controller
         
     }
 
+    public function delete($id){
+        $products= Product::where('id',$id)->with('images')->get();
+        foreach($products as $product){
+            $images = $product->images;  
+        }
+        foreach($images as $image){
+            Storage::disk('products')->delete($image->image);
+        }
+        Product::where('id',$id)->with('images')->delete();
+        
+        //falta eliminar en la table de imagenes
+      
+    }
 
     public function edit(Request $request,$id){
       //verificacion si el campo de la foto es valido osea la imagen esta subida?
         //instancia producto
         $product= Product::find($id); 
         if($product ->user_id === Auth::id()){
-            if($request->file('photo')->isValid() ){
                 $product ->name = $request ->input('titulo');
-                $product ->image = $request->photo->store('', 'products');//mueve la imagen al disco creado en FileSystem.php en la ruta img/products/
                 $product ->maker = $request ->input('fabricante');
                 $product ->category_id = $request ->input('select-category');
                 $product ->phone = $request ->input('telefono');
@@ -90,10 +102,26 @@ class ControladorProducto extends Controller
                 $product ->price = $request ->input('precio');
                 $product ->status = 'pendiente';
                 $product->save();//guarda producto
-            }else {
-                echo "error en el archivo imagen";
+                $images = $product->with('images');
+                if(!$request->file('photos'->isEmpty())){
+                    foreach ($images as $image){
+                        Storage::disk('products')->delete($image);
+                    }
+                    //elimina imagenes relacionales con el producto
+                    $images->delete();
+                    $photos= $request->file('photos');
+                    $len= count($photos);
+                    for($i=0;$i<$len;$i++){
+                        if($photos[$i] != ""){
+                            //agrega las nuevas imagenes
+                            $images= new Image;
+                            $images->image = $photos[$i]->store('', 'products');
+                            $images->save();
+                            $product->images()->attach($images);
+                        }
+                }
             }
-
+                
         }else{
             echo "usuario incorrecto en la edicion del producto";
         }

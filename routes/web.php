@@ -19,6 +19,7 @@ Route::get('/profile/{id}', 'ControladorPrincipal@viewProfile');
 Route::post('/envio', 'Auth\RegisterController@returnArray')->name('envio');
 Route::post('/envio-login', 'Auth\LoginController@returnArray')->name('envio-login');
 Route::get('/anadir-producto', 'ControladorPrincipal@viewAnadirProducto')->middleware('auth');
+Route::get('/eliminar-producto/{id}', 'ControladorProducto@delete');
 Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-producto')->middleware('auth');;
 Auth::routes();
 
