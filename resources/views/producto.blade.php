@@ -88,7 +88,7 @@
                         $lista = $("body #lista-img").children("li").length;
                         console.log($lista);
         
-                        for(var i = 1; i <= $lista; i++){
+                        for(var i = 0; i <= $lista; i++){
                                 $("#"+i).click(function (event) {
                                 ruta= $(this).attr('src');
                                 rutaImg= $("#img").attr('src');

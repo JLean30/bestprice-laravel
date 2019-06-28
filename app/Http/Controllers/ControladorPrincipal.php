@@ -13,7 +13,7 @@ class ControladorPrincipal extends Controller
    
 
     public function viewHome(){
-        $products = Product::with('images','user')->get();
+        $products= Product::with('images','user')->get();
         
         
         return view('index',compact('products'));
