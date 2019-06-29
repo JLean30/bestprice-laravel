@@ -1,6 +1,6 @@
 @extends('layouts.bestprices')
 @section('content')
-<!--@inject('controller', 'App\Http\Controllers\ControladorPrincipal')-->
+<!--@inject('controller', 'App\Http\Controllers\ControladorBusqueda')-->
 <div class="section-views">
                 <div class="row justify-content-center">
                         <h1>{{$titulo}}</h1>

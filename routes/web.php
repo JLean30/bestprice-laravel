@@ -23,6 +23,7 @@ Route::get('/editar-producto/{id}', 'ControladorPrincipal@viewEditProduct')->mid
 Route::get('/eliminar-producto/{id}', 'ControladorProducto@delete');
 Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-producto')->middleware('auth');
 Route::post('/editar-producto','ControladorProducto@edit' )->name('editar-producto')->middleware('auth');
+Route::get('/busqueda','ControladorBusqueda@view');
 Auth::routes();
 
 //prueba de comit

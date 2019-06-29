@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 
 class ControladorProducto extends Controller
 {
+
     public function  __construct(){
         $this->middleware('auth');
      
