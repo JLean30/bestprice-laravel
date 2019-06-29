@@ -8,7 +8,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-4 col-xs-12 float-right text-center">
                              
-                                        <label for="upload"><img class="img-fluid" id="preview" src="img/imagen.png" alt="image to upload" /></label>
+                                        <label for="upload"><img class="img-fluid" id="preview" src="/img/imagen.png" alt="image to upload" /></label>
                                         <input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">
                                           
                              

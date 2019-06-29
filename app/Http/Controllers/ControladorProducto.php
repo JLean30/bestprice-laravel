@@ -67,6 +67,7 @@ class ControladorProducto extends Controller
                 
             
             }
+            return redirect('/');
         
         }
         
@@ -79,9 +80,11 @@ class ControladorProducto extends Controller
             $images = $product->images;  
         }
         foreach($images as $image){
+            Image::where('id',$image->id)->delete();
             Storage::disk('products')->delete($image->image);
         }
         Product::where('id',$id)->with('images')->delete();
+        
         
         //falta eliminar en la table de imagenes
       

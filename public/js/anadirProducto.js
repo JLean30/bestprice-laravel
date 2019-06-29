@@ -12,11 +12,11 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
-            if($('#preview').attr('src') === "img/imagen.png"){
+            if($('#preview').attr('src') === "/img/imagen.png"){
                 $('#preview').replaceWith('<img src="'+e.target.result+'" class="img-fluid"/>');
                 //Aqui se agrega la parte del label que hace al llamado al input
                 //hay que modificar con clases para que se vea bien en los diapositivos
-                $('#imgThubnails-preview').append('<label id="label-thubnails" for="upload"><img class="img-fluid" src="img/imagen.png" alt="image to upload" width="100px" /></label> ');
+                $('#imgThubnails-preview').append('<label id="label-thubnails" for="upload"><img class="img-fluid" src="/img/imagen.png" alt="image to upload" width="100px" /></label> ');
                 
                 addInput();
                 $cantImg++;

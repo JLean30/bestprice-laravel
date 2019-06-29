@@ -61,6 +61,7 @@ width: 80%;">
         @foreach($products as $product)
         
         <!--inicio card-->
+        <a href="/producto/{{$product->id}}">
         <div class="card shadow-sm">
             <p class="bg-dark text-light text-center position-absolute card-tipoProducto ">{{$product->condition}}</p>
             @foreach ($product->images->take(1) as $productImage )
@@ -80,6 +81,7 @@ width: 80%;">
             
           </div>
         </div>
+      </a>
         @endforeach
         <!--final card-->
                             

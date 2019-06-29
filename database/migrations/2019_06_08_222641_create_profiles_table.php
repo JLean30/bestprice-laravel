@@ -20,6 +20,11 @@ class CreateProfilesTable extends Migration
             $table->string('description');
             $table->timestamps();
         });
+        Schema::table('profiles', function($table)
+        {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    
+            });
     }
 
     /**
