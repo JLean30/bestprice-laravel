@@ -3,13 +3,14 @@
 @section('content')
 
             <div class="section-form">
-                    <form method="POST" enctype="multipart/form-data" action="{{route('registrar-producto')}}">
+                    <form class="needs-validation" method="POST" enctype="multipart/form-data" action="{{route('registrar-producto')}}" novalidate>
                         @csrf
                     <div class="row justify-content-center">
                         <div class="col-xl-4 col-xs-12 float-right text-center">
                              
                                         <label for="upload"><img class="img-fluid" id="preview" src="/img/imagen.png" alt="image to upload" /></label>
-                                        <input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">
+                                        <input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)" required>
+                                        <div class="invalid-feedback">Seleccione una Imagen</div>
                                           
                              
                                     <div class="row d-flex justify-content-around">
@@ -19,36 +20,47 @@
                                             </ul>
                                     </div>
                         
-                            <h3 class="text-left mt-4">Precio</h3>
-                            <input class="form-control form-control-lg" type="text" name="precio">
+                            <h3 class="text-left mt-4" for="precio">Precio</h3>
+                            <input class="form-control form-control-lg mt-2 validar" type="text" name="precio" required>
+                            <div class="invalid-feedback">Inserte el Precio del Articulo</div>
                         </div>
+
                         <div class="col-xl-4 col-xs-12 form-group d-flex justify-content-around flex-column">
                             <h3>Titulo</h3>
-                            <input class="form-control form-control-lg" name="titulo" type="text">
+                            <input class="form-control form-control-lg mt-2" name="titulo" type="text" required>
+                            <div class="invalid-feedback">Inserte el Titulo del Articulo</div>
                             <h3>Fabricante</h3>
-                            <input class="form-control form-control-lg" name="fabricante" type="text">
+                            <input class="form-control form-control-lg mt-2" name="fabricante" type="text" required>
+                            <div class="invalid-feedback">Inserte el Fabricante del Articulo</div>
                             <h3>Categoria</h3>
-                            <select class="custom-select custom-select-lg" name="select-category">
+                            <select class="custom-select custom-select-lg" name="select-category" required>
+                                <option value="">Seleccione una Categoria</option>
                               <!--cargo las categorias mandadas por el metodo del controller principal -->
                               @foreach($categories as $category)
                               <option value="{{$category->id}}">{{$category->name}}</option>
                               @endforeach 
                             </select>
-                            <h3>Tipo</h3>
-                            <select class="custom-select custom-select-lg" name="select-condition">
+                            <div class="invalid-feedback">Seleccione una Categoria para su Articulo</div>
+                            <h3>Condicion</h3>
+                            <select class="custom-select custom-select-lg" name="select-condition" required>
+                                <option value="">Seleccione una Condicion</option>
                                 <option value="nuevo">Nuevo</option>
                                 <option value="usado">Usado</option>
                             </select>
+                            <div class="invalid-feedback">Seleccione una Condicion de su Articulo</div>
                             <h3>Telefono</h3>
-                            <input class="form-control form-control-lg" name="telefono" type="text">
+                            <input class="form-control form-control-lg mt-2 validar" name="telefono" type="text" required>
+                            <div class="invalid-feedback">Inserte el Telefono al que desea ser Contactado</div>
                             <h3>Ubicacion</h3>
-                            <input class="form-control form-control-lg" name="ubicacion" type="text">
+                            <input class="form-control form-control-lg mt-2" name="ubicacion" type="text" required>
+                            <div class="invalid-feedback">Inserte la Ubicacion del Articulo</div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-xl-8 form-group align-self-center container-form">
                             <h3>Detalle</h3>
-                            <input class="form-control form-control-lg" type="text" name="detalle">
+                            <input class="form-control form-control-lg mt-2" type="text" name="detalle" required>
+                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
                         </div>
                     </div>
                     <div class="row justify-content-center">
