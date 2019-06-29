@@ -1,9 +1,4 @@
-//preview de imagen ya existente
-function previewExistent(input,id) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-        $('#'+id).attr('src',e.target.result);
+//cambios randall
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -19,11 +14,6 @@ function previewExistent(input,id) {
       });
     }, false);
   })();
-
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
   $(function(){
     $(".validar").keydown(function(event){
         //alert(event.keyCode);
@@ -32,6 +22,19 @@ function previewExistent(input,id) {
         }
     });
 });
+//preview de imagen ya existente
+function previewExistent(input,id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#'+id).attr('src',e.target.result);
+
+
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+ 
 
 //section function preview
 $cantImg=$("body #imgThubnails-preview").children("li").length;
