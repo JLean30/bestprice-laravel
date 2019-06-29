@@ -1,3 +1,9 @@
+//preview de imagen ya existente
+function previewExistent(input,id) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#'+id).attr('src',e.target.result);
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -14,6 +20,10 @@
     }, false);
   })();
 
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
   $(function(){
     $(".validar").keydown(function(event){
         //alert(event.keyCode);
@@ -24,8 +34,9 @@
 });
 
 //section function preview
-        $cantImg=0;
+$cantImg=$("body #imgThubnails-preview").children("li").length;
         function addInput(){
+            $cantImg=$("body #imgThubnails-preview").children("li").length;
             //cambios de id para su respectivo input las imagenes
             $('#upload').attr('id',"upload"+$cantImg);
             $('#imgThubnails-preview').append('<input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">');

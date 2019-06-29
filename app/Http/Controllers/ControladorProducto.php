@@ -90,44 +90,36 @@ class ControladorProducto extends Controller
       
     }
 
-    public function edit(Request $request,$id){
+    public function edit(Request $request){
       //verificacion si el campo de la foto es valido osea la imagen esta subida?
+      dd($request->all());
+      $id = $request->input('id');
         //instancia producto
-        $product= Product::find($id); 
-        if($product ->user_id === Auth::id()){
-                $product ->name = $request ->input('titulo');
-                $product ->maker = $request ->input('fabricante');
-                $product ->category_id = $request ->input('select-category');
-                $product ->phone = $request ->input('telefono');
-                $product ->location = $request ->input('ubicacion');
-                $product ->description = $request ->input('detalle');
-                $product ->condition = $request ->input('select-condition') ;
-                $product ->price = $request ->input('precio');
-                $product ->status = 'pendiente';
+        $product= Product::where('id',$id)->get();
+        
+        foreach($product as $product){
+            $user_id =$product->user_id;
+        }
+       
+            if( $user_id=== Auth::id()){
+                $product->name = $request ->input('titulo');
+                $product->maker = $request ->input('fabricante');
+                $product->category_id = $request ->input('select-category');
+                $product->phone = $request ->input('telefono');
+                $product->location = $request ->input('ubicacion');
+                $product->description = $request ->input('detalle');
+                $product->condition = $request ->input('select-condition') ;
+                $product->price = $request ->input('precio');
+                $product->status = 'pendiente';
                 $product->save();//guarda producto
-                $images = $product->with('images');
-                if(!$request->file('photos'->isEmpty())){
-                    foreach ($images as $image){
-                        Storage::disk('products')->delete($image);
-                    }
-                    //elimina imagenes relacionales con el producto
-                    $images->delete();
-                    $photos= $request->file('photos');
-                    $len= count($photos);
-                    for($i=0;$i<$len;$i++){
-                        if($photos[$i] != ""){
-                            //agrega las nuevas imagenes
-                            $images= new Image;
-                            $images->image = $photos[$i]->store('', 'products');
-                            $images->save();
-                            $product->images()->attach($images);
-                        }
-                }
-            }
                 
+                
+                return redirect()->route('producto', [$product]);
         }else{
             echo "usuario incorrecto en la edicion del producto";
         }
+
+        
        
     }
 }

@@ -14,7 +14,7 @@ use App\User;
 Route::get('/', 'ControladorPrincipal@viewHome')->name('/');
 Route::get('/admin', 'ControladorPrincipal@viewAdmin')->name('admin')->middleware('auth');
 Route::get('/registrarse', 'Auth\RegisterController@returnView');
-Route::get('/producto/{id}', 'ControladorPrincipal@viewProducto');
+Route::get('/producto/{id}', 'ControladorPrincipal@viewProducto')->name('producto');
 Route::get('/profile/{id}', 'ControladorPrincipal@viewProfile');
 Route::post('/envio', 'Auth\RegisterController@returnArray')->name('envio');
 Route::post('/envio-login', 'Auth\LoginController@returnArray')->name('envio-login');

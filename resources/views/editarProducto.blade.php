@@ -11,17 +11,18 @@
                                 <label for="upload"><img class="img-fluid" id="preview" src="/img/products/{{$imagen}}" alt="image to upload" /></label>
                                 <input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">    
                                 <div class="row d-flex justify-content-around">
-                                        <ul class="list-inline" id="lista-img">
+                                        <ul class="list-inline" id="imgThubnails-preview">
                                                         @isset($thubnails)
                                                         @for ($i = 0; $i < count($thubnails); $i++)
-                                                        <label for="upload"><li class="list-inline-item"><img class="img-fluid" id="{{$i+1}}" src={{$thubnails[$i]}} alt="image to upload" width="100px" /></li></label>
-                                                        <input type="file" hidden name="photos[]"  id="upload{{$i+1}}" onchange="filePreview(this)">   
+                                                        <label for="upload{{$i+1}}"><li class="list-inline-item"><img class="img-fluid" id="{{$i+1}}" src={{$thubnails[$i]}} alt="image to upload" width="100px" /></li></label>
+                                                        <input type="file" hidden name="photos[]"  id="upload{{$i+1}}" onchange="previewExistent(this,{{$i+1}})">   
                                                          @endFor     
                                                 @endIsset
                                                 
                                         </ul>
                                 </div> 
                                 @foreach($products as $product)
+                                <input class="form-control form-control-lg" hidden type="text" name="id" value="{{$product->id}}">
                             <h3 class="text-left mt-4">Precio</h3>
                             <input class="form-control form-control-lg" type="text" name="precio" value="{{$product->price}}">
                         </div>
@@ -67,7 +68,7 @@
          
                     @endforeach
                     <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-primary" id="agregar-btn">Agregar el Articulo</button>
+                        <button type="submit" class="btn btn-primary" id="agregar-btn">Actualizar Producto</button>
                     </div>
                 </div>
 

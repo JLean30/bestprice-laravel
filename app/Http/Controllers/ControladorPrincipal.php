@@ -74,22 +74,26 @@ class ControladorPrincipal extends Controller
     public function viewEditProduct($id)
     {
         //instancia producto
-        $products = Product::where('id',$id)->with('images')->get();
+        $products = Product::where('id', $id)->with('images')->get();
         $categories = Category::all();
         foreach ($products as $product) {
-            $images = $product->images;
-            $len = count($images);
-            $thubnails = array();
-            for ($i = 0; $i < $len; $i++) {
-                if ($i === 0) {
-                    $imagen = $images[$i]->image;
-                } else {
+            if (Auth::id() != $product->user_id) {
+                abort(404);
+            } else {
+                $images = $product->images;
+                $len = count($images);
+                $thubnails = array();
+                for ($i = 0; $i < $len; $i++) {
+                    if ($i === 0) {
+                        $imagen = $images[$i]->image;
+                    } else {
 
-                    array_push($thubnails, "/img/products/" . $images[$i]->image);
+                        array_push($thubnails, "/img/products/" . $images[$i]->image);
+                    }
                 }
+                return view('editarProducto', compact('products', 'categories', 'imagen', 'thubnails'));
             }
         }
-        return view('editarProducto', compact('products', 'categories','imagen','thubnails'));
     }
 
     public function viewProfile($id)
