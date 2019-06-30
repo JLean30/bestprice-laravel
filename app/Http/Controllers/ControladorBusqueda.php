@@ -7,8 +7,5 @@ use Illuminate\Http\Request;
 
 class ControladorBusqueda extends Controller
 {
-    public function view()
-    {
-        
-    }
+    
 }
