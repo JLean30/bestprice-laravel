@@ -13,8 +13,8 @@ class ControladorBusqueda extends Controller
 {
     public function show(Request $request)
     {
-        $search = $request ->get('search');
-        $products = DB::table('products')->where('name','%'.$search.'%');
-        return view('busqueda',['products'=>$products]);
+        $products = Product::where('name', 'like', '%'.$request->input('search').'%')->with('images')->get();
+        $categories = Category::all();
+        return view('busqueda',compact('products','categories'));
     }
 }

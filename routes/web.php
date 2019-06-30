@@ -24,7 +24,7 @@ Route::get('/eliminar-producto/{id}', 'ControladorProducto@delete');
 Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-producto')->middleware('auth');
 Route::post('/buscar-producto','ControladorBusqueda@show' )->name('buscar-producto');
 Route::post('/editar-producto','ControladorProducto@edit' )->name('editar-producto')->middleware('auth');
-Route::get('/busqueda/{name}','ControladorPrincipal@viewBusqueda');
+Route::get('/busqueda','ControladorPrincipal@viewBusqueda');
 Auth::routes();
 
 //prueba de comit

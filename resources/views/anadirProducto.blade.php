@@ -44,15 +44,22 @@
                             <h3>Condicion</h3>
                             <select class="custom-select custom-select-lg" name="select-condition" required>
                                 <option value="">Seleccione una Condicion</option>
-                                <option value="nuevo">Nuevo</option>
-                                <option value="usado">Usado</option>
+                                <option value="Articulo Nuevo">Nuevo</option>
+                                <option value="Articulo Usado">Usado</option>
                             </select>
                             <div class="invalid-feedback">Seleccione una Condicion de su Articulo</div>
                             <h3>Telefono</h3>
                             <input class="form-control form-control-lg mt-2 validar" name="telefono" type="text" required>
                             <div class="invalid-feedback">Inserte el Telefono al que desea ser Contactado</div>
                             <h3>Ubicacion</h3>
-                            <input class="form-control form-control-lg mt-2" name="ubicacion" type="text" required>
+                            <select class="custom-select custom-select-lg" name="ubicacion" required>
+                                    <option value="San Jose">San Jose</option>
+                                    <option value="Heredia">Heredia</option>
+                                    <option value="Cartago">Cartago</option>
+                                    <option value="Puntarenas">Puntarenas</option>
+                                    <option value="Limon">Limon</option>
+                                    <option value="Guanacaste">Guanacaste</option>
+                                  </select>
                             <div class="invalid-feedback">Inserte la Ubicacion del Articulo</div>
                         </div>
                     </div>
