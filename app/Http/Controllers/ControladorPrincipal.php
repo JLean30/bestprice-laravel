@@ -12,8 +12,11 @@ use App\User;
 class ControladorPrincipal extends Controller
 {
 
-    public function viewBusqueda(){
-        return view('busqueda');
+    public function viewBusqueda($name){
+
+        $products = Product::where('name', $name)->with('images')->get();
+
+        return view('busqueda', compact('products'));
     }
     public function viewHome()
     {
