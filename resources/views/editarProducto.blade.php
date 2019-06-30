@@ -3,13 +3,13 @@
 @section('content')
 
             <div class="section-form">
-                    <form method="POST" enctype="multipart/form-data" action="{{route('editar-producto')}}">
+                    <form method="POST" id="form-edit" enctype="multipart/form-data" action="{{route('editar-producto')}}">
                         @csrf
                     <div class="row justify-content-center">
                         
                         <div class="col-xl-4 col-xs-12 float-right text-center">
                                 <label for="upload"><img class="img-fluid" id="preview" src="/img/products/{{$imagen}}" alt="image to upload" /></label>
-                                <input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">    
+                                <input type="file" hidden name="photos[]"  id="upload" onchange="previewExistent(this,'preview')">    
                                 <div class="row d-flex justify-content-around">
                                         <ul class="list-inline" id="imgThubnails-preview">
                                                         @isset($thubnails)
@@ -68,7 +68,7 @@
          
                     @endforeach
                     <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-primary" id="agregar-btn">Actualizar Producto</button>
+                        <button id="edit" class="btn btn-primary" id="agregar-btn">Actualizar Producto</button>
                     </div>
                 </div>
 
@@ -77,5 +77,28 @@
         
  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+    
+     $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+      $('#edit').click(function(){
+          alert("pulsando");
+         
+         
+          $hola= "no ";
+          $('#form-edit').append($hola);
+        $.ajax({
+        url: '127.0.0.1:3000/editar-producto' ,
+        type: "POST",
+        data: $('#form-edit').serialize(),
+        success: function( response ) {
+           
+        }
+      });
+      })
+     </script>
     <script src="/js/anadirProducto.js"></script>
 @endsection
