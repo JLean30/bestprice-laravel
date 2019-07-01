@@ -40,38 +40,49 @@ class ControladorProducto extends Controller
         
         $photos= $request->file('photos');
         $len= count($photos);
-       
-        
-        //verificacion si el campo de la foto es valido osea la imagen esta subida?
-        if($len != 0){
-            //instancia producto
-            $product= new Product;
-            $product ->name = $request ->input('titulo');
-            $product ->user_id = Auth::id();//obtencion del id del usuario logueado
-            $product ->maker = $request ->input('fabricante');
-            $product ->category_id = $request ->input('select-category');
-            $product ->phone = $request ->input('telefono');
-            $product ->location = $request ->input('ubicacion');
-            $product ->description = $request ->input('detalle');
-            $product ->condition = $request ->input('select-condition') ;
-            $product ->price = $request ->input('precio');
-            $product ->status = 'pendiente';
-            $product->save();//guarda producto
-           
-            for($i=0;$i<$len;$i++){
-                if($photos[$i] != ""){
-                    $images= new Image;
-                    $images->image = $photos[$i]->store('', 'products');
-                    $images->save();
-                    $product->images()->attach($images);
-                }
+        $validateData = \Validator::make($request->all(), [
+            'titulo' => 'required|max:1000',
+            'fabricante' => 'required|max:1000',
+            'select-category' => 'required|max:10000',
+            'telefono' => 'required|integer',
+            'ubicacion' => 'required|max:10000',
+            'detalle' => 'required|max:1000000',
+            'precio' => 'required|integer'
+        ]);
+
+        if($validateData -> fails()){
+            return redirect()->back()->withInput()->withErrors($validateData->errors());
+        }else{
+            //verificacion si el campo de la foto es valido osea la imagen esta subida?
+            if($len != 0){
+                //instancia producto
+                $product= new Product;
+                $product ->name = $request ->input('titulo' );
+                $product ->user_id = Auth::id();//obtencion del id del usuario logueado
+                $product ->maker = $request ->input('fabricante');
+                $product ->category_id = $request ->input('select-category');
+                $product ->phone = $request ->input('telefono');
+                $product ->location = $request ->input('ubicacion');
+                $product ->description = $request ->input('detalle');
+                $product ->condition = $request ->input('select-condition') ;
+                $product ->price = $request ->input('precio');
+                $product ->status = 'pendiente';
+                $product->save();//guarda producto
+            
+                for($i=0;$i<$len;$i++){
+                    if($photos[$i] != ""){
+                        $images= new Image;
+                        $images->image = $photos[$i]->store('', 'products');
+                        $images->save();
+                        $product->images()->attach($images);
+                    }
+                    
                 
+                }
+                return redirect('/');
             
             }
-            return redirect('/');
-        
         }
-        
         
     }
 

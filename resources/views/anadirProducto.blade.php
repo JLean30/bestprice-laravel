@@ -21,19 +21,34 @@
                                     </div>
                         
                             <h3 class="text-left mt-4" for="precio">Precio</h3>
-                            <input class="form-control form-control-lg mt-2 validar" type="text" name="precio" required>
+                            <input class="form-control form-control-lg mt-2 validar @error('precio') is-invalid @enderror" type="text" name="precio" value="{{ old('precio') }}" required>
                             <div class="invalid-feedback">Inserte el Precio del Articulo</div>
+                            @error('precio')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="col-xl-4 col-xs-12 form-group d-flex justify-content-around flex-column">
                             <h3>Titulo</h3>
-                            <input class="form-control form-control-lg mt-2" name="titulo" type="text" required>
+                            <input class="form-control form-control-lg mt-2 @error('titulo') is-invalid @enderror" name="titulo" value="{{ old('titulo') }}" type="text" required>
                             <div class="invalid-feedback">Inserte el Titulo del Articulo</div>
+                            @error('titulo')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <h3>Fabricante</h3>
-                            <input class="form-control form-control-lg mt-2" name="fabricante" type="text" required>
+                            <input class="form-control form-control-lg mt-2 @error('fabricante') is-invalid @enderror" name="fabricante" value="{{ old('fabricante') }}" type="text" required>
                             <div class="invalid-feedback">Inserte el Fabricante del Articulo</div>
+                            @error('fabricante')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <h3>Categoria</h3>
-                            <select class="custom-select custom-select-lg" name="select-category" required>
+                            <select class="custom-select custom-select-lg @error('select-category') is-invalid @enderror" name="select-category" value="{{ old('select-category') }}" required>
                                 <option value="">Seleccione una Categoria</option>
                               <!--cargo las categorias mandadas por el metodo del controller principal -->
                               @foreach($categories as $category)
@@ -41,33 +56,59 @@
                               @endforeach 
                             </select>
                             <div class="invalid-feedback">Seleccione una Categoria para su Articulo</div>
+                            @error('select-category')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <h3>Condicion</h3>
-                            <select class="custom-select custom-select-lg" name="select-condition" required>
+                            <select class="custom-select custom-select-lg @error('select-condition') is-invalid @enderror" name="select-condition" value="{{ old('select-condition') }}" required>
                                 <option value="">Seleccione una Condicion</option>
                                 <option value="Articulo Nuevo">Nuevo</option>
                                 <option value="Articulo Usado">Usado</option>
                             </select>
                             <div class="invalid-feedback">Seleccione una Condicion de su Articulo</div>
+                            @error('select-condition')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <h3>Telefono</h3>
-                            <input class="form-control form-control-lg mt-2 validar" name="telefono" type="text" required>
+                            <input class="form-control form-control-lg mt-2 validar @error('telefono') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" type="text" required>
                             <div class="invalid-feedback">Inserte el Telefono al que desea ser Contactado</div>
+                            @error('telefono')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <h3>Ubicacion</h3>
-                            <select class="custom-select custom-select-lg" name="ubicacion" required>
-                                    <option value="San Jose">San Jose</option>
-                                    <option value="Heredia">Heredia</option>
-                                    <option value="Cartago">Cartago</option>
-                                    <option value="Puntarenas">Puntarenas</option>
-                                    <option value="Limon">Limon</option>
-                                    <option value="Guanacaste">Guanacaste</option>
-                                  </select>
-                            <div class="invalid-feedback">Inserte la Ubicacion del Articulo</div>
+                            <select class="custom-select custom-select-lg @error('ubicacion') is-invalid @enderror" name="ubicacion" value="{{ old('ubicacion') }}" required>
+                                <option value="">Seleccione una Ubicacion</option>    
+                                <option value="San Jose">San Jose</option>
+                                <option value="Heredia">Heredia</option>
+                                <option value="Cartago">Cartago</option>
+                                <option value="Puntarenas">Puntarenas</option>
+                                <option value="Limon">Limon</option>
+                                <option value="Guanacaste">Guanacaste</option>
+                              </select>
+                            <div class="invalid-feedback">Seleccione una Ubicacion del Articulo</div>
+                            @error('ubicacion')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row justify-content-center">
                         <div class="col-xl-8 form-group align-self-center container-form">
                             <h3>Detalle</h3>
-                            <input class="form-control form-control-lg mt-2" type="text" name="detalle" required>
+                            <input class="form-control form-control-lg mt-2 @error('detalle') is-invalid @enderror" type="text" name="detalle" value="{{ old('detalle') }}" required>
                             <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            @error('detalle')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row justify-content-center">
