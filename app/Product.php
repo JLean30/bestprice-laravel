@@ -12,6 +12,10 @@ class Product extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function categories(){
+        return $this->hasOne('App\Category', 'id', 'category_id');
+    }
     public function images(){
         return $this->belongsToMany(Image::class)->withTimestamps();
     

@@ -25,6 +25,7 @@ Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-p
 Route::post('/buscar-producto','ControladorBusqueda@show' )->name('buscar-producto');
 Route::post('/editar-producto','ControladorProducto@edit' )->name('editar-producto')->middleware('auth');
 Route::get('/busqueda','ControladorPrincipal@viewBusqueda');
+Route::get('/product', 'ControladorPrincipal@productTest');
 Auth::routes();
 
 //prueba de comit

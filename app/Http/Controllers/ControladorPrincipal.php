@@ -37,7 +37,10 @@ class ControladorPrincipal extends Controller
         $categories = Category::all();
         return view('anadirProducto', compact('categories'));
     }
-
+    public function productTest(){
+        $products = Product::where('id', 1)->with('images','categories')->get();
+        dd($products);
+    }
     public function viewProducto($id)
     {
         $products = Product::where('id', $id)->with('images')->get();
