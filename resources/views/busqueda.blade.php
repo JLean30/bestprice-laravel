@@ -11,9 +11,16 @@
       <div>
           <form class="input-group mb-3" action="{{route('buscar-producto')}}" method="POST">
             @csrf
-            <input type="search" class="form-control" name="search" placeholder="¿Qué está buscando?" aria-label="buscar">
+
+            @isset($name)
+            <input type="search" class="form-control" name="buscar" placeholder="¿Qué está buscando?" value="{{$name}}" aria-label="buscar">
+            @endIsset
+
+            @empty($name)
+            <input type="search" class="form-control" name="buscar" placeholder="¿Qué está buscando?" aria-label="buscar">
+            @endEmpty
+
             <button class="btn btn-primary text-white btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
-          </form>
         </div>
       </div>
     </div>
@@ -22,43 +29,21 @@
 
 <div class="row">
     <div class="col-xl-2 offset-xl-1 offset-md-0 offset-lg-0 card form-group mt-5">
-
-      <form action="">
-            <div>
-                    <label class="mt-3" for="">Marca</label>
-                    <select class="form-control form-control-sm">
-                      <option value="asus">NVIDIA</option>
-                      <option value="msi">AMD</option>
-                    </select>
+                  <div>
+                      <label class="mt-2" for="">Categoria</label>
+                      <select class="form-control form-control-sm" name="select-category">
+                        <option value="">Seleccione una Categoria</option>
+                        <!--cargo las categorias mandadas por el metodo del controller principal -->
+                        @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->name}}</option>
+                        @endforeach 
+                      </select>
                   </div>
             
                   <div>
-                    <label class="mt-2" for="">Fabricante</label>
-                    <select class="form-control form-control-sm">
-                      <option value="asus">Asus</option>
-                      <option value="msi">MSI</option>
-                      <option value="gigabyte">Gigabyte</option>
-                      <option value="asrock">ASRock</option>
-                      <option value="shapirre">Shappire</option>
-                      <option value="evga">EVGA</option>
-                    </select>
-                  </div>
-            
-                  <div>
-                    <label class="mt-2" for="">Precios</label>
-                    <input class="form-control" type="range" list="tickmarks">
-                    <datalist id="tickmarks">
-                      <option value="10000">
-                      <option value="50000">
-                      <option value="100000">
-                      <option value="500000">
-                      <option value="1000000">
-                    </datalist>
-                  </div>
-            
-                  <div>
-                    <label for="">Condicion</label>
-                    <select class="form-control form-control-sm">
+                    <label class="mt-2" for="">Condicion</label>
+                    <select class="form-control form-control-sm" name="select-condition">
+                      <option value="">Seleccione una Ubicacion</option> 
                       <option value="nuevo">Nuevo</option>
                       <option value="usado">Usado</option>
                     </select>
@@ -66,18 +51,19 @@
             
                   <div>
                     <label class="mt-2" for="">Ubicacion</label>
-                    <select class="form-control form-control-sm mb-3">
-                      <option value="sanJose">San Jose</option>
-                      <option value="heredia">Heredia</option>
-                      <option value="cartago">Cartago</option>
-                      <option value="puntarenas">Puntarenas</option>
-                      <option value="limon">Limon</option>
-                      <option value="guanacaste">Guanacaste</option>
+                    <select class="form-control form-control-sm mb-3" name="ubicacion">
+                      <option value="">Seleccione una Ubicacion</option>    
+                      <option value="San Jose">San Jose</option>
+                      <option value="Heredia">Heredia</option>
+                      <option value="Cartago">Cartago</option>
+                      <option value="Puntarenas">Puntarenas</option>
+                      <option value="Limon">Limon</option>
+                      <option value="Guanacaste">Guanacaste</option>
                     </select>
                   </div>
             
                   <div class="text-center">
-                    <button type="button" class="btn btn-secondary">Aplicar</button>
+                    <button type="submit" class="btn btn-secondary mb-2">Aplicar</button>
                   </div>
       </form>
 

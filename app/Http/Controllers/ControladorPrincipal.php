@@ -13,8 +13,8 @@ class ControladorPrincipal extends Controller
 {
 
     public function viewBusqueda(){
-        
-        return view('busqueda');
+        $categories = Category::all();
+        return view('busqueda', compact('categories'));
     }
     public function viewHome()
     {

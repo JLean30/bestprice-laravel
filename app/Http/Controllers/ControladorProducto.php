@@ -51,6 +51,7 @@ class ControladorProducto extends Controller
         ]);
 
         if($validateData -> fails()){
+            dd($validateData->errors());
             return redirect()->back()->withInput()->withErrors($validateData->errors());
         }else{
             //verificacion si el campo de la foto es valido osea la imagen esta subida?
