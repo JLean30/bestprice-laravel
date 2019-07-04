@@ -13,13 +13,14 @@ class ControladorBusqueda extends Controller
 {
     public function show(Request $request)
     {
+        $prueba="Hola";
         $categories = Category::all();
         $name=$request->input('buscar');
-            $products = Product::where([['name', 'like', '%'.$request->input('buscar').'%'],
-            ['location', 'like', '%'.$request->input('ubicacion').'%'],
-            ['condition', 'like', '%'.$request->input('select-condition').'%'],
-            ['category_id', 'like', '%'.$request->input('select-category').'%']])->with('images')->get();
-            return view('busqueda',compact('products','categories',$name));
+        $products = Product::where([['name', 'like', '%'.$request->input('buscar').'%'],
+        ['location', 'like', '%'.$request->input('ubicacion').'%'],
+        ['condition', 'like', '%'.$request->input('select-condition').'%'],
+        ['category_id', 'like', '%'.$request->input('select-category').'%']])->with('images')->get();
+        return view('busqueda',compact('products','categories','name',$name,'prueba',$prueba));
 
     }
 }
