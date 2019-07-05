@@ -104,6 +104,8 @@ class ControladorProducto extends Controller
             Storage::disk('products')->delete($image->image);
         }
         Product::where('id',$id)->with('images')->delete();
+
+        return redirect('/');
         
         
         //falta eliminar en la table de imagenes
