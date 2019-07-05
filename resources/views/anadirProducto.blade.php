@@ -112,7 +112,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-primary" id="agregar-btn">Agregar el Articulo</button>
+                        <a class="btn btn-danger mr-2" href="/">Cancelar el Articulo</a>
+                        <button type="submit" class="btn btn-primary ml-2" id="agregar-btn">Agregar el Articulo</button>
                     </div>
                 </div>
            

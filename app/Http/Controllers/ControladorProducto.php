@@ -114,7 +114,6 @@ class ControladorProducto extends Controller
 
     public function edit(Request $request){
       //verificacion si el campo de la foto es valido osea la imagen esta subida?
-      dd($request->all());
       $id = $request->input('id');
         //instancia producto
         $product= Product::where('id',$id)->get();
