@@ -18,17 +18,6 @@
                                             <input class="form-control" type="text" name="description" value="{{$profile->description}}">
                                         </p>
                                 </div>
-                                <ul class="nav nav-pills mx-auto " id="pills-tab" role="tablist">
-                                  <li class="nav-item mr-4 margenes-phone">
-                                    <a class="nav-link active" id="pills-acercaDe-tab" data-toggle="pill" href="#pills-acercaDe" role="tab" aria-controls="pills-acercaDe" aria-selected="true">Acerca De</a>
-                                  </li>
-                                  <li class="nav-item mr-4 margenes-phone">
-                                    <a class="nav-link" id="pills-productos-tab" data-toggle="pill" href="#pills-productos" role="tab" aria-controls="pills-productos" aria-selected="false">Productos</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Interesados</a>
-                                  </li>
-                                </ul>
                                
                         </div>
                       </div>
@@ -51,21 +40,6 @@
                                    
                                    
                                   </div>
-                                  <div class="tab-pane fade" id="pills-productos" role="tabpanel" aria-labelledby="pills-productos-tab">
-                                      <h3 class="color-title linea-horizontal tamanno-title__cel">Articulos en venta</h3>
-                                     
-                                      <div class="container container-productos " >
-                                          
-                                      <div class="card-deck">
-                                       
-                                                              
-                                                                                                               
-                                        </div>
-                                      </div>
-                                           </div>
-                                           <div class="tab-pane fade" id="pills-comentarios" role="tabpanel" aria-labelledby="pills-comentarios-tab">
-                                            <p class="text-center text-muted mt-5">No hay Interesados en sus productos</p>
-                                          </div>
                                     
                                   </div>
                                   
@@ -74,7 +48,7 @@
                               </div>
                             </div>
                             <div class="text-center mt-4 mb-4">
-                                <button class="btn btn-secondary mr-2">Cancelar</button>
+                                <a class="btn btn-secondary mr-2" href="/profile/{{$profile->id}}">Cancelar</a>
                                 <button class="btn btn-primary mr-2" type="submit">Aceptar</button>
                             </div>
                     </form>

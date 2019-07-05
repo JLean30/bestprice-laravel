@@ -90,9 +90,13 @@
                                                 <div class="card-body">
                                                   <h5 class="card-title color-title">{{$usuariosInteresados[$i]["descripcionProducto"]}} </h5>
                                                  
-                                                  <p class="card-text text-right color-title">{{$usuariosInteresados[$i]["nombre"]}} </p>
+                                                  <p class="card-text text-right color-title">La persona interesada es: {{$usuariosInteresados[$i]["nombre"]}} </p>
                                                   
                                                 </div>
+                                                <div class="text-center mt-4 mb-4">
+                                                  <a class="btn btn-secondary mr-2" href="/profile/{{$profile->id}}">Desechar</a>
+                                                  <a class="btn btn-primary mr-2" href="/profile/">Ver Perfil</a>
+                                              </div>
                                               </div>
                                               @endfor
                                               
