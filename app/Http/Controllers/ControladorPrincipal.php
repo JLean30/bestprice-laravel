@@ -171,13 +171,11 @@ class ControladorPrincipal extends Controller
                 $len = count($images);
                 $thubnails = array();
                 for ($i = 0; $i < $len; $i++) {
-                    if ($i === 0) {
-                        $imagen = $images[$i]->image;
-                    } else {
-
+                
+                        $imagen = $images[0]->image;
                         array_push($thubnails, "/img/products/" . $images[$i]->image);
                     }
-                }
+                
                 return view('editarProducto', compact('products', 'categories', 'imagen', 'thubnails'));
             }
         }
