@@ -97,12 +97,16 @@ class ControladorPrincipal extends Controller
                 $interes=false;
                 //verificacion de interes producto usuario
                 if (Auth::check()) {
-                    $results = DB::select('select * from interested_products where interested_id = ? and product_id ', [Auth::id(), $id]);
-                    if(!empty($results)){
+                    $results = DB::table('interested_products')->where('interested_id', Auth::id())->where('product_id', $id)->get();
+                  
+                    if(!$results->isEmpty()){
+                      
                         $interes=true;
+                       
                     }
                
                 }
+               
             }
             return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
         } else {

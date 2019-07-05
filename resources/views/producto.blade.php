@@ -74,7 +74,7 @@
                         </div>
                 </div>
                 <div class="row justify-content-center mt-4">
-                        @if(!$interes)
+                        @if (!$interes)
                         <form action="{{route('registrar-interesado')}}" method="post">
                                 @csrf
                                 <input hidden name="id_duenno" value="{{$dueno}}">

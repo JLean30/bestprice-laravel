@@ -23,6 +23,7 @@ class ControladorProducto extends Controller
     public function makeInterest(Request $request){
         if (Auth::check()) {
            DB::insert('insert into interested_products (interested_id, owner_id, product_id) values (?, ?, ?)', [Auth::id(), $request->input("id_duenno"), $request->input("id_producto") ]);
+           return view('index');
         }
 
     }
