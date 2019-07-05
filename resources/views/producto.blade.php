@@ -87,8 +87,8 @@
                         
                 </div>
                 <div class="text-center mt-4 mb-4">
-                        @if ($editar) <a class="btn btn-danger mr-2" href="/eliminar-producto/{{$dueno}}">Eliminar</a> @endIf
-                        @if ($editar) <a class="btn btn-primary ml-2" href="/editar-producto/{{$dueno}}">Editar</a> @endIf
+                        <a class="btn btn-danger mr-2" href="/eliminar-producto/{{$dueno}}">Eliminar</a>
+                        <a class="btn btn-primary ml-2" href="/editar-producto/{{$dueno}}">Editar</a>
                 </div>
 
         </div>

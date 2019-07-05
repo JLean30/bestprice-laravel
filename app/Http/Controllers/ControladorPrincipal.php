@@ -68,7 +68,6 @@ class ControladorPrincipal extends Controller
     }
     public function viewProducto($id)
     {
-        $editar = false;
         $products = Product::where('id', $id)->with('images')->get();
 
         if (!$products->isEmpty()) {
@@ -105,7 +104,7 @@ class ControladorPrincipal extends Controller
                
                 }
             }
-            return view('producto', compact('editar','id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
+            return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
         } else {
             abort(404);
         }
