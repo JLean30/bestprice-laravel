@@ -119,29 +119,42 @@ class ControladorProducto extends Controller
         //instancia producto
         $product= Product::where('id',$id)->get();
         
-        foreach($product as $product){
-            $user_id =$product->user_id;
-        }
-       
-            if( $user_id=== Auth::id()){
-                $product->name = $request ->input('titulo');
-                $product->maker = $request ->input('fabricante');
-                $product->category_id = $request ->input('select-category');
-                $product->phone = $request ->input('telefono');
-                $product->location = $request ->input('ubicacion');
-                $product->description = $request ->input('detalle');
-                $product->condition = $request ->input('select-condition') ;
-                $product->price = $request ->input('precio');
-                $product->status = 'pendiente';
-                $product->save();//guarda producto
-                
-                
-                return redirect()->route('producto', [$product]);
-        }else{
-            echo "usuario incorrecto en la edicion del producto";
-        }
+        $validateData = \Validator::make($request->all(), [
+            'titulo' => 'required|max:1000',
+            'fabricante' => 'required|max:1000',
+            'select-category' => 'required|max:10000',
+            'telefono' => 'required|integer',
+            'ubicacion' => 'required|max:10000',
+            'detalle' => 'required|max:1000000',
+            'select-condition'=>'required|max:10000',
+            'precio' => 'required|integer'
+        ]);
 
-        
-       
+        if($validateData -> fails()){
+            dd($validateData->errors());
+            return redirect()->back()->withInput()->withErrors($validateData->errors());
+        }else{
+            foreach($product as $product){
+                $user_id =$product->user_id;
+            }
+           
+                if( $user_id=== Auth::id()){
+                    $product->name = $request ->input('titulo');
+                    $product->maker = $request ->input('fabricante');
+                    $product->category_id = $request ->input('select-category');
+                    $product->phone = $request ->input('telefono');
+                    $product->location = $request ->input('ubicacion');
+                    $product->description = $request ->input('detalle');
+                    $product->condition = $request ->input('select-condition') ;
+                    $product->price = $request ->input('precio');
+                    $product->status = 'pendiente';
+                    $product->save();//guarda producto
+                    
+                    
+                    return redirect()->route('producto', [$product]);
+            }else{
+                echo "usuario incorrecto en la edicion del producto";
+            }
+        }
     }
 }
