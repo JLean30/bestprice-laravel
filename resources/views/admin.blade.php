@@ -69,6 +69,11 @@
                                                   {{$product->description}}
                                               </p>
                                               <p class="card-text text-right color-title">₡{{$product->price}}</p>
+
+                                              <form action="">
+                                                  <a class="btn btn-danger" href="">Denegar</a>
+                                                  <a class="btn btn-primary" href="">Aprobar</a>
+                                              </form>
                                               
                                             </div>
                                           </div>
