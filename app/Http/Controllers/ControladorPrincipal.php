@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Category;
 use App\Product;
 use App\Profile;
@@ -16,13 +17,10 @@ class ControladorPrincipal extends Controller
         $editar = false;
         if (!$profiles->isEmpty()) {
             foreach ($profiles as $profile) {
-                $users = User::with('profiles', 'products.images')->find($profile->user_id);
+                $users = User::with('profiles', 'products.images','interestedProducts')->find($profile->user_id);
+                dd($users);
             }
-
             $profile = $users->profiles;
-
-
-
             $products = $users->products;
 
 
@@ -79,12 +77,12 @@ class ControladorPrincipal extends Controller
                 $len = count($images);
                 $thubnails = array();
                 for ($i = 0; $i < $len; $i++) {
-                    if ($i === 0) {
-                        $imagen = $images[$i]->image;
-                    } else {
+                 
+                        $imagen = $images[0]->image;
+                   
 
                         array_push($thubnails, "/img/products/" . $images[$i]->image);
-                    }
+                    
                 }
                 $dueno = $product->user_id;
                 $titulo = $product->name;
@@ -97,7 +95,7 @@ class ControladorPrincipal extends Controller
                 //llamada a relacion de categoria con productos
                 $categoria = $category->with('products')->find($product->category_id)->name;
             }
-            return view('producto', compact('dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails'));
+            return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails'));
         } else {
             abort(404);
         }
@@ -136,17 +134,19 @@ class ControladorPrincipal extends Controller
         if (!$profiles->isEmpty()) {
             foreach ($profiles as $profile) {
                 $users = User::with('profiles', 'products.images')->find($profile->user_id);
+               
             }
 
             $profile = $users->profiles;
 
 
-
             $products = $users->products;
 
 
-            if (Auth::id() === $id) {
+            if (Auth::id() == $id) {
                 $editar = true;
+                $statement = DB::table('interested_products')->where('owner_id', $id)->get();
+                dd($statement);
             }
 
 

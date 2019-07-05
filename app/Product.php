@@ -20,6 +20,7 @@ class Product extends Model
         return $this->belongsToMany(Image::class)->withTimestamps();
     
     }
+    
     public function getNextId()
     {
 

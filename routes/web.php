@@ -22,6 +22,7 @@ Route::post('/envio-login', 'Auth\LoginController@returnArray')->name('envio-log
 Route::get('/anadir-producto', 'ControladorPrincipal@viewAnadirProducto')->middleware('auth');
 Route::get('/editar-producto/{id}', 'ControladorPrincipal@viewEditProduct')->middleware('auth');
 Route::get('/eliminar-producto/{id}', 'ControladorProducto@delete');
+Route::post('/registrar-interesado','ControladorProducto@makeInterest')->name('registrar-interesado');
 Route::post('/registrar-producto','ControladorProducto@add' )->name('registrar-producto')->middleware('auth');
 Route::post('/buscar-producto','ControladorBusqueda@show' )->name('buscar-producto');
 Route::post('/editar-producto','ControladorProducto@edit' )->name('editar-producto')->middleware('auth');
