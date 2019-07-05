@@ -1,47 +1,62 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Recuperacion contraseña</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="background-login">
+<div class="container-fluid " style="
+    min-width: 98vw;">
+<div class="col-12 mt-3 ml-2 text-left">
+     <a href="{{route('/')}}" class="text-white btn-atras ">
+        < Inicio </a> </div> <!-- Default form login -->
+    <div class="col-sm-12 col-md-12 col-lg-6 mx-auto container-login">
+            <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route('password.email') }}" class="form-recover mx-auto text-center">
                         @csrf
+                        <h2 class="color-title mt-4 mb-3">
+                                Recuperar Contraseña
+                            </h2>
+                        <div class="form-group">
+                            <label for="email" class="col-md-12 col-form-label ">{{ __('E-Mail Address') }}</label>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ "El corre ingresado no existe" }}</strong>
                                     </span>
                                 @enderror
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-bestprices btn-sesion mx-auto mt-2 mb-4">
+                                    {{ __('Recuperar Contraseña') }}
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
+  <!--termina form recuperar-->
+
 </div>
-@endsection
+</div>
+
+    
+</body>
+
+</html>

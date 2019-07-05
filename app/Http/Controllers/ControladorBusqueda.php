@@ -19,7 +19,7 @@ class ControladorBusqueda extends Controller
         ['location', 'like', '%'.$request->input('ubicacion').'%'],
         ['condition', 'like', '%'.$request->input('select-condition').'%'],
         ['category_id', 'like', '%'.$request->input('select-category').'%']])->with('images')->get();
-        return view('busqueda',compact('products','categories','name',$name));
+        return view('busqueda',compact('products','categories','name'));
 
     }
 }
