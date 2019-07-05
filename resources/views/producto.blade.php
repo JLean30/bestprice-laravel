@@ -8,17 +8,10 @@
                 <div class="row justify-content-center">
                         <div class="col-lg-4 col-xs-12 float-right">
                                 <div class="select-img">
-                                        <p
-                                                class="tipoImg bg-dark text-light text-center position-absolute card-tipoProducto ">
-                                                {{$condicion}}</p>
+                                        <p class="tipoImg bg-dark text-light text-center position-absolute card-tipoProducto ">{{$condicion}}</p>
                                         
-                                      
                                         <img class="img-fluid" id="img" src="/img/products/{{$imagen}}" alt="">
                                        
-                                   
-                                        
-                                            
-                                        
                                         <div class="row d-flex justify-content-around">
                                                 <ul class="list-inline" id="lista-img">
                                                                 @isset($thubnails)

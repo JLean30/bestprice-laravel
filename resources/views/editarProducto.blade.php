@@ -25,7 +25,7 @@
                                 <input class="form-control form-control-lg" hidden type="text" name="id" value="{{$product->id}}" required>
                             <h3 class="text-left mt-4">Precio</h3>
                             <input class="form-control form-control-lg validar @error('precio') is-invalid @enderror" type="text" name="precio" value="{{$product->price}}" required>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte el Precio del Articulo</div>
                             @error('precio')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                         <div class="col-xl-4 col-xs-12 form-group d-flex justify-content-around flex-column">
                             <h3>Titulo</h3>
                             <input class="form-control form-control-lg @error('titulo') is-invalid @enderror" name="titulo" type="text" value="{{$product->name}}" required>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte el Titulo del Articulo</div>
                             @error('titulo')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -43,7 +43,7 @@
                             @enderror
                             <h3>Fabricante</h3>
                             <input class="form-control form-control-lg @error('fabricante') is-invalid @enderror" name="fabricante" type="text" value="{{$product->maker}}" required>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte el Fabricante del Articulo</div>
                             @error('fabricante')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
                              
                               @endforeach 
                             </select>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte el Categoria del Articulo</div>
                             @error('select-category')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -77,7 +77,7 @@
                                 <option value="usado" selected>Usado</option>
                                 @endif
                             </select>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte la Condicion del Articulo</div>
                             @error('select-condition')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -85,7 +85,7 @@
                             @enderror
                             <h3>Telefono</h3>
                             <input class="form-control form-control-lg validar @error('telefono') is-invalid @enderror" name="telefono" type="text" value="{{$product->phone}}" required>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte el Telefono del Articulo</div>
                             @error('telefono')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
                             @enderror
                             <h3>Ubicacion</h3>
                             <input class="form-control form-control-lg @error('ubicacion') is-invalid @enderror" name="ubicacion" type="text"value="{{$product->location}}" required>
-                            <div class="invalid-feedback">Inserte el Detalle del Articulo</div>
+                            <div class="invalid-feedback">Inserte la Ubicacion del Articulo</div>
                             @error('ubicacion')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
