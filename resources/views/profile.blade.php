@@ -51,38 +51,6 @@
                                    
                                    
                                   </div>
-                                  <div class="tab-pane fade" id="pills-productos" role="tabpanel" aria-labelledby="pills-productos-tab">
-                                      <h3 class="color-title linea-horizontal tamanno-title__cel">Articulos Pendientes</h3>
-                                     
-                                      <div class="container container-productos " >
-                                          
-                                      <div class="card-deck">
-                                          @foreach($products as $product)
-                                          @foreach ($product->images->take(1) as $productImage )
-                                          <!--inicio card-->
-                                          <div class="card shadow-sm">
-                                              <p class="bg-dark text-light text-center position-absolute card-tipoProducto ">{{$product->condition}}</p>
-                                            <img class="card-img-top" src="{{url('img/products/'.$productImage->image)}}" alt="Card image cap">
-                                            @endforeach
-                                            <div class="card-body">
-                                              <h5 class="card-title color-title">{{$product->name}}</h5>
-                                              <p class="card-text">
-                                                  {{$product->description}}
-                                              </p>
-                                              <p class="card-text text-right color-title">₡{{$product->price}}</p>
-                                              <div class="text-center mt-4 mb-4">
-                                                  <a class="btn btn-secondary mr-2" href="">Denegar</a>
-                                                  <a class="btn btn-primary mr-2" href="">Aceptar</a>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          @endforeach
-                                          <!--final card-->
-                                                              
-                                                                                                               
-                                        </div>
-                                      </div>
-                                           </div>
 
                                   <div class="tab-pane fade" id="pills-productos" role="tabpanel" aria-labelledby="pills-productos-tab">
                                       <h3 class="color-title linea-horizontal tamanno-title__cel">Articulos en venta</h3>
