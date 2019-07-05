@@ -43,7 +43,7 @@ class ControladorPrincipal extends Controller
     }
     public function viewHome()
     {
-        $products = Product::with('images', 'user')->get();
+        $products = Product::with('images', 'user')->where('status','aprobado')->get();
 
 
         return view('index', compact('products'));
@@ -68,7 +68,8 @@ class ControladorPrincipal extends Controller
     }
     public function viewProducto($id)
     {
-        $products = Product::where('id', $id)->with('images')->get();
+        $products = Product::where('id', $id)->with('images','user')->get();
+      
 
         if (!$products->isEmpty()) {
             $category = new Category;
@@ -84,7 +85,8 @@ class ControladorPrincipal extends Controller
                         array_push($thubnails, "/img/products/" . $images[$i]->image);
                     
                 }
-                $dueno = $product->user_id;
+                $nombreDuenno=$product->user->name;
+                $idDuenno = $product->user_id;
                 $titulo = $product->name;
                 $fabricante = $product->maker;
                 $telefono = $product->phone;
@@ -108,7 +110,7 @@ class ControladorPrincipal extends Controller
                 }
                
             }
-            return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
+            return view('producto', compact('id','idDuenno','nombreDuenno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
         } else {
             abort(404);
         }
@@ -166,7 +168,7 @@ class ControladorPrincipal extends Controller
                         foreach($images as $image){
                             
                         array_push($usuariosInteresados,["nombre" => $userInterested->name, "imagen"=>'/img/products/'.$image->image, "descripcionProducto"=>$product->name,
-                         "interesado"=> '/profile/'.$userInterested->id, "id_peticion"=> $statement->id] );
+                         "interesado"=> '/profile/'.$userInterested->id, "id_peticion"=> '/borrar-interes/'.$statement->id] );
                          break;
                         }
                     }

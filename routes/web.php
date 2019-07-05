@@ -17,6 +17,7 @@ Route::get('/registrarse', 'Auth\RegisterController@returnView');
 Route::get('/producto/{id}', 'ControladorPrincipal@viewProducto')->name('producto');
 Route::get('/profile/{id}', 'ControladorPrincipal@viewProfile');
 Route::get('/editarPerfil/{id}', 'ControladorPrincipal@viewEditarPerfil');
+Route::get('/borrar-interes/{id}','ControladorProducto@deleteInterest');
 Route::post('/envio', 'Auth\RegisterController@returnArray')->name('envio');
 Route::post('/envio-login', 'Auth\LoginController@returnArray')->name('envio-login');
 Route::get('/anadir-producto', 'ControladorPrincipal@viewAnadirProducto')->middleware('auth');
