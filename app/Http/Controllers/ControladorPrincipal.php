@@ -146,7 +146,7 @@ class ControladorPrincipal extends Controller
             if (Auth::id() == $id) {
                 $editar = true;
                 $statement = DB::table('interested_products')->where('owner_id', $id)->get();
-                dd($statement);
+            
             }
 
 
