@@ -17,11 +17,11 @@ class ControladorPrincipal extends Controller
         $editar = false;
         if (!$profiles->isEmpty()) {
             foreach ($profiles as $profile) {
-                $users = User::with('profiles', 'products.images','interestedProducts')->find($profile->user_id);
-                dd($users);
+                $users = User::with('profiles')->find($profile->user_id);
+            
             }
             $profile = $users->profiles;
-            $products = $users->products;
+            
 
 
             if (Auth::id() === $id) {
@@ -31,7 +31,7 @@ class ControladorPrincipal extends Controller
 
 
 
-            return view('editarPerfil', compact('editar', 'users', 'products', 'profile'));
+            return view('editarPerfil',compact('profile','users','editar'));
         } else {
             abort(404);
         }

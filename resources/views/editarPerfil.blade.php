@@ -57,24 +57,7 @@
                                       <div class="container container-productos " >
                                           
                                       <div class="card-deck">
-                                          @foreach($products as $product)
-                                          @foreach ($product->images->take(1) as $productImage )
-                                          <!--inicio card-->
-                                          <div class="card shadow-sm">
-                                              <p class="bg-dark text-light text-center position-absolute card-tipoProducto ">{{$product->condition}}</p>
-                                            <img class="card-img-top" src="{{url('img/products/'.$productImage->image)}}" alt="Card image cap">
-                                            @endforeach
-                                            <div class="card-body">
-                                              <h5 class="card-title color-title">{{$product->name}}</h5>
-                                              <p class="card-text">
-                                                  {{$product->description}}
-                                              </p>
-                                              <p class="card-text text-right color-title">₡{{$product->price}}</p>
-                                              
-                                            </div>
-                                          </div>
-                                          @endforeach
-                                          <!--final card-->
+                                       
                                                               
                                                                                                                
                                         </div>
