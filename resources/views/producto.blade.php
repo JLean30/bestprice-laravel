@@ -30,10 +30,6 @@
                                         </div>
                                 </div>
 
-
-                               
-                                
-                        
                                 <div class="row d-flex flex-column">
                                         <div class="row align-self-center mt-5">
                                                 <p class="">Añadido por <a href="/profile/{{$idDuenno}}"class="text-info">{{$nombreDuenno}}</a></p>

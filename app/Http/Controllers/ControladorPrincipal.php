@@ -52,7 +52,45 @@ class ControladorPrincipal extends Controller
     public function viewAdmin(Request $request)
     {
         $request->user()->authorizeRoles(['admin']);
-        return view('admin');
+
+        $profiles = Profile::where('id', '1')->get();
+        $editar = false;
+        if (!$profiles->isEmpty()) {
+            foreach ($profiles as $profile) {
+                $users = User::with('profiles', 'products.images')->find($profile->user_id);
+               
+            }
+            $profile = $users->profiles;
+            $products = $users->products;
+            if (Auth::id() == '1') {
+                $editar = true;
+                $statements = DB::table('interested_products')->where('owner_id', '1')->get();
+                $usuariosInteresados=array();
+                foreach($statements as $statement){
+                    $usersInterested = User::where('id',$statement->interested_id)->get();
+                    $productsInterested = Product::where('id',$statement->product_id)->with('images')->get();
+                    
+                    foreach($usersInterested as $userInterested){
+                        foreach($productsInterested as $product){
+                            $images = $product->images;  
+                       
+                        foreach($images as $image){
+                            
+                        array_push($usuariosInteresados,["nombre" => $userInterested->name, "imagen"=>'/img/products/'.$image->image, "descripcionProducto"=>$product->name,
+                         "interesado"=> '/profile/'.$userInterested->id, "id_peticion"=> '/borrar-interes/'.$statement->id] );
+                         break;
+                        }
+                    }
+                    }
+                   
+                }
+                return view('admin', compact('editar', 'users', 'products', 'profile','usuariosInteresados'));
+            }else{
+                return view('admin', compact('editar', 'users', 'products', 'profile'));
+            } 
+        } else {
+            abort(404);
+        }
     }
 
     public function viewAnadirProducto(Request $request)
