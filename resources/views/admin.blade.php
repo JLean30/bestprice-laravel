@@ -11,7 +11,7 @@
                                         <img src="{{url('img/profiles/'.$profile->image)}}" alt="profile picture" class=" img-fluid img-circular">
                                 </div>
                                 <div class="col-sm-12 col-md-7 col-lg-6 align-self-center centrado-cel">
-                                        <h3>{{$users->username}} <a class="ml-5" href="/editarPerfil/{{$profile->id}}">@if ($editar) <i class="material-icons">Editar</i> @endIf</a></h3>
+                                        <h3>{{$users->username}} <a class="ml-5" href="/editarPerfil/{{$profile->id}}"></h3>
                                         <p class="container-perfil__descripción">
                                                 {{$profile->description}}
                                         </p>
@@ -23,11 +23,7 @@
                                   <li class="nav-item mr-4 margenes-phone">
                                     <a class="nav-link" id="pills-productos-tab" data-toggle="pill" href="#pills-productos" role="tab" aria-controls="pills-productos" aria-selected="false">Productos Pendientes</a>
                                   </li>
-                                  @if ($editar)
-                                  <li class="nav-item">
-                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Interesados</a>
-                                  </li>
-                                  @endIf
+                                  
                                 </ul>
                                
                         </div>
@@ -70,10 +66,20 @@
                                               </p>
                                               <p class="card-text text-right color-title">₡{{$product->price}}</p>
 
-                                              <form action="">
-                                                  <a class="btn btn-danger" href="">Denegar</a>
-                                                  <a class="btn btn-primary" href="">Aprobar</a>
-                                              </form>
+                                              <form method="POST" action="{{route('aprobacion')}}">
+                                                @csrf
+                                                  <input hidden name="tipo" value="denegacion">
+                                                  <input hidden name="idProduct" value="{{$product->id}}">
+                                                  <button type="submit" class="btn btn-danger">Denegar</button>
+                                                </form>
+                                                <form method="POST" action="{{route('aprobacion')}}">
+                                                  @csrf
+                                                    <input hidden name="tipo" value="aprobar">
+                                                    <input hidden name="idProduct" value="{{$product->id}}">
+                                                    <button type="submit" class="btn btn-primary">aprobar</button>
+                                                  </form>
+                                                  
+                                              
                                               
                                             </div>
                                           </div>
