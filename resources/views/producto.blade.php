@@ -74,12 +74,16 @@
                         </div>
                 </div>
                 <div class="row justify-content-center mt-4">
+                        @if(!$interes)
                         <form action="{{route('registrar-interesado')}}" method="post">
                                 @csrf
                                 <input hidden name="id_duenno" value="{{$dueno}}">
                                 <input hidden name="id_producto" value="{{$id}}">
                         <button type="submit" class="btn btn-primary" id="agregar-btn">Me interesa</button>
                         </form>
+                        @else
+                        <button type="button" disabled class="btn btn-primary disabled" id="agregar-btn">Me interesa</button>
+                        @endif
                         
                 </div>
 

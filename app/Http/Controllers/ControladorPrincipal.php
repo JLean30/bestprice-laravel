@@ -94,8 +94,17 @@ class ControladorPrincipal extends Controller
                 $precio = $product->price;
                 //llamada a relacion de categoria con productos
                 $categoria = $category->with('products')->find($product->category_id)->name;
+                $interes=false;
+                //verificacion de interes producto usuario
+                if (Auth::check()) {
+                    $results = DB::select('select * from interested_products where interested_id = ? and product_id ', [Auth::id(), $id]);
+                    if(!empty($results)){
+                        $interes=true;
+                    }
+               
+                }
             }
-            return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails'));
+            return view('producto', compact('id','dueno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
         } else {
             abort(404);
         }
@@ -153,7 +162,7 @@ class ControladorPrincipal extends Controller
                         foreach($images as $image){
                             
                         array_push($usuariosInteresados,["nombre" => $userInterested->name, "imagen"=>'/img/products/'.$image->image, "descripcionProducto"=>$product->name,
-                         "id_peticion"=> $userInterested->id, "id_peticion"=> $statement->id] );
+                         "id_interesado"=> $userInterested->id, "id_peticion"=> $statement->id] );
                          break;
                         }
                     }
