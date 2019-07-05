@@ -74,7 +74,13 @@
                         </div>
                 </div>
                 <div class="row justify-content-center mt-4">
-                        <button type="button" class="btn btn-primary" id="agregar-btn">Contactar Vendedor</button>
+                        <form action="{{route('registrar-interesado')}}" method="post">
+                                @csrf
+                                <input hidden name="id_duenno" value="{{$dueno}}">
+                                <input hidden name="id_producto" value="{{$id}}">
+                        <button type="submit" class="btn btn-primary" id="agregar-btn">Me interesa</button>
+                        </form>
+                        
                 </div>
 
         </div>

@@ -19,6 +19,13 @@ class ControladorProducto extends Controller
      
     }
  
+    //metodo para la creacion de interesado por producto
+    public function makeInterest(Request $request){
+        if (Auth::check()) {
+           DB::insert('insert into interested_products (interested_id, owner_id, product_id) values (?, ?, ?)', [Auth::id(), $request->input("id_duenno"), $request->input("id_producto") ]);
+        }
+
+    }
     //validacion de los parametros enviados para su respectivo error falta implementar los valores son del user
     public function validator(array $data)
     {

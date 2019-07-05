@@ -23,9 +23,11 @@
                                   <li class="nav-item mr-4 margenes-phone">
                                     <a class="nav-link" id="pills-productos-tab" data-toggle="pill" href="#pills-productos" role="tab" aria-controls="pills-productos" aria-selected="false">Productos</a>
                                   </li>
+                                  @if ($editar)
                                   <li class="nav-item">
                                     <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Interesados</a>
                                   </li>
+                                  @endIf
                                 </ul>
                                
                         </div>
