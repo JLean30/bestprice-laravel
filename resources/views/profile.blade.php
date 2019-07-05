@@ -11,7 +11,7 @@
                                         <img src="{{url('img/profiles/'.$profile->image)}}" alt="profile picture" class=" img-fluid img-circular">
                                 </div>
                                 <div class="col-sm-12 col-md-7 col-lg-6 align-self-center centrado-cel">
-                                        <h3>{{$users->username}} @if ($editar) <i class="material-icons">Editar</i> @endIf </h3>
+                                        <h3>{{$users->username}} <a class="ml-5" href="/editarPerfil/">@if ($editar) <i class="material-icons">Editar</i> @endIf</a></h3>
                                         <p class="container-perfil__descripción">
                                                 {{$profile->description}}
                                         </p>
