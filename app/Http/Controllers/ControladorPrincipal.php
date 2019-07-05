@@ -97,10 +97,13 @@ class ControladorPrincipal extends Controller
                 //llamada a relacion de categoria con productos
                 $categoria = $category->with('products')->find($product->category_id)->name;
                 $interes=false;
+                $duennoProducto=false;
                 //verificacion de interes producto usuario
                 if (Auth::check()) {
                     $results = DB::table('interested_products')->where('interested_id', Auth::id())->where('product_id', $id)->get();
-                  
+                  if(Auth::id() === $idDuenno){
+                      $duennoProducto=true;
+                  }
                     if(!$results->isEmpty()){
                       
                         $interes=true;
@@ -110,7 +113,7 @@ class ControladorPrincipal extends Controller
                 }
                
             }
-            return view('producto', compact('id','idDuenno','nombreDuenno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
+            return view('producto', compact('id','duennoProducto','idDuenno','nombreDuenno', 'titulo', 'imagen', 'fabricante', 'telefono', 'ubicacion', 'descripcion', 'categoria', 'condicion', 'precio', 'thubnails','interes'));
         } else {
             abort(404);
         }
