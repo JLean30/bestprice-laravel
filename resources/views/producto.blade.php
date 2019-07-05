@@ -43,7 +43,7 @@
                         
                                 <div class="row d-flex flex-column">
                                         <div class="row align-self-center mt-5">
-                                                <p class="">Añadido por <a href="/profile/{{$dueno}}"class="text-info">thanos</a></p>
+                                                <p class="">Añadido por <a href="/profile/{{$idDuenno}}"class="text-info">{{$nombreDuenno}}</a></p>
                                         </div>
                                         <div class="row align-self-center mt-5">
                                                 <h1 class="text-right text-large text-danger">₡ {{$precio}}</h1>
@@ -74,10 +74,10 @@
                         </div>
                 </div>
                 <div class="row justify-content-center mt-4">
-                        @if(!$interes)
+                        @if (!$interes)
                         <form action="{{route('registrar-interesado')}}" method="post">
                                 @csrf
-                                <input hidden name="id_duenno" value="{{$dueno}}">
+                                <input hidden name="id_duenno" value="{{$idDuenno}}">
                                 <input hidden name="id_producto" value="{{$id}}">
                         <button type="submit" class="btn btn-primary" id="agregar-btn">Me interesa</button>
                         </form>
@@ -87,8 +87,10 @@
                         
                 </div>
                 <div class="text-center mt-4 mb-4">
+                                @if ($duennoProducto)
                         <a class="btn btn-danger mr-2" href="/eliminar-producto/{{$id}}">Eliminar</a>
                         <a class="btn btn-primary ml-2" href="/editar-producto/{{$id}}">Editar</a>
+                        @endif
                 </div>
 
         </div>

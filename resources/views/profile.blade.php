@@ -127,7 +127,7 @@
                                                   
                                                 </div>
                                                 <div class="text-center mt-4 mb-4">
-                                                  <a class="btn btn-secondary mr-2" href="/profile/{{$profile->id}}">Desechar</a>
+                                                  <a class="btn btn-secondary mr-2" href={{$usuariosInteresados[$i]["id_peticion"]}}>Desechar</a>
                                                   <a class="btn btn-primary mr-2" href={{$usuariosInteresados[$i]["interesado"]}}>Ver Perfil</a>
                                               </div>
                                               </div>

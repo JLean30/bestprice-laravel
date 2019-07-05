@@ -23,6 +23,14 @@ class ControladorProducto extends Controller
     public function makeInterest(Request $request){
         if (Auth::check()) {
            DB::insert('insert into interested_products (interested_id, owner_id, product_id) values (?, ?, ?)', [Auth::id(), $request->input("id_duenno"), $request->input("id_producto") ]);
+           return redirect()->back();
+        }
+
+    }
+    public function deleteInterest($id){
+        if (Auth::check()) {
+           DB::table('interested_products')->where('id',$id)->delete();
+           return redirect()->back();
         }
 
     }
@@ -58,7 +66,6 @@ class ControladorProducto extends Controller
         ]);
 
         if($validateData -> fails()){
-            dd($validateData->errors());
             return redirect()->back()->withInput()->withErrors($validateData->errors());
         }else{
             //verificacion si el campo de la foto es valido osea la imagen esta subida?
