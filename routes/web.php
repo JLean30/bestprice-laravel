@@ -30,6 +30,7 @@ Route::post('/buscar-producto','ControladorBusqueda@show' )->name('buscar-produc
 Route::post('/editar-producto','ControladorProducto@edit' )->name('editar-producto')->middleware('auth');
 Route::get('/busqueda','ControladorPrincipal@viewBusqueda');
 Route::get('/product', 'ControladorPrincipal@productTest');
+Route::post('/aprobacion','ControladorPrincipal@aprobacion')->name('aprobacion')->middleware('auth');
 Auth::routes();
 
 //prueba de comit

@@ -51,8 +51,23 @@ class ControladorPrincipal extends Controller
 
     public function viewAdmin(Request $request)
     {
+        $profiles = Profile::where('id', 1)->get();
+        $editar = false;
+        if (!$profiles->isEmpty()) {
+            foreach ($profiles as $profile) {
+                $users = User::with('profiles', 'products.images')->find($profile->user_id);
+               
+            }
+            $profile = $users->profiles;
+            $products = Product::with('images', 'user')->where('status','pendiente')->get();
+            
+                    }
+                   
+                
+               
         $request->user()->authorizeRoles(['admin']);
-        return view('admin');
+        return view('admin', compact('users', 'products', 'profile'));
+ 
     }
 
     public function viewAnadirProducto(Request $request)
@@ -204,6 +219,22 @@ class ControladorPrincipal extends Controller
                     
                 
           
+        }
+
+        public function aprobacion(Request $request){
+          
+            $productsAprobacion= Product::where('id',$request->input('idProduct'))->get();
+            foreach($productsAprobacion as $productAprobacion){
+                if($request->input("tipo") === "aprobar"){
+                    $productAprobacion->status= "aprobado";
+                    $productAprobacion->save();
+                }else{
+                    $productAprobacion->status= "denegado";
+                    $productAprobacion->save();
+                }
+            }
+            return redirect('/admin');
+            
         }
     }
 
