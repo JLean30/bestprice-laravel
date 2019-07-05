@@ -81,7 +81,27 @@
                                       </div>
                                            </div>
                                            <div class="tab-pane fade" id="pills-comentarios" role="tabpanel" aria-labelledby="pills-comentarios-tab">
-                                            <p class="text-center text-muted mt-5">No hay interesados en sus productos</p>
+                                              <div class="card-deck">
+                                              @isset($usuariosInteresados)
+                                              @for ($i = 0; $i < count($usuariosInteresados); $i++)
+                                              <div class="card shadow-sm">
+                                                <img class="card-img-top" src={{$usuariosInteresados[$i]["imagen"]}} alt="Card image cap">
+                                               
+                                                <div class="card-body">
+                                                  <h5 class="card-title color-title">{{$usuariosInteresados[$i]["descripcionProducto"]}} </h5>
+                                                 
+                                                  <p class="card-text text-right color-title">{{$usuariosInteresados[$i]["nombre"]}} </p>
+                                                  
+                                                </div>
+                                              </div>
+                                              @endfor
+                                              
+                                          @endisset
+                                          
+                                          @empty($usuariosInteresados)
+                                          <p class="text-center text-muted mt-5">No hay interesados en sus productos</p>
+                                          @endempty
+                                        </div>
                                           </div>
                                     
                                   </div>
