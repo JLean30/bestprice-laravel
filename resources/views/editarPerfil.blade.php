@@ -1,15 +1,17 @@
 @extends('layouts.bestprices')
 @section('content')
 
-<form action="">
+<form method="POST"  enctype="multipart/form-data" action="{{route('editar-perfil')}}">
+  @csrf
        <div class="container-fluid">
 
                         <div class="row shadow-sm">
                             
                                
                                 <div class="col-sm-12 col-md-3 col-lg-3 offset-lg-2 offset-md-1 text-center">
+                                    <input  hidden name="id" value="{{$profile->id}}">
                                         <label for="upload"><img alt="profile picture" class="img-fluid img-circular" id="preview" src="{{url('img/profiles/'.$profile->image)}}" alt="image to upload" /></label>
-                                        <input class="form-group" type="file" hidden name="photos" id="upload" onchange="previewExistent(this,'preview')">
+                                        <input class="form-group" type="file" hidden name="photo" id="upload" onchange="previewExistent(this,'preview')">
                                         <p class="text-center">Toque la Imagen para Cambiar</p>
                                     </div>
                                 <div class="col-sm-12 col-md-7 col-lg-6 align-self-center centrado-cel">

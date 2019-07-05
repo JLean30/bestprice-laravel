@@ -186,4 +186,26 @@ class ControladorPrincipal extends Controller
             abort(404);
         }
     }
-}
+
+        public function editarPerfil(Request $request){
+           
+            $id = $request->input('id');
+             //instancia producto
+            $perfils= Profile::where('id',$id)->get();
+            
+                    foreach ($perfils as $perfil) {
+                        
+                        $perfil->description = $request ->input('description');
+                     if($request->file('photo')->isValid()){
+                        $perfil->image = $request->file('photo')->store('', 'profiles');
+                    }
+                         $perfil->save();//guarda producto
+                    }
+                    
+                    return redirect()->route('profile', ['id' => $id]);
+                    
+                
+          
+        }
+    }
+
