@@ -24,7 +24,7 @@
                                     <a class="nav-link" id="pills-productos-tab" data-toggle="pill" href="#pills-productos" role="tab" aria-controls="pills-productos" aria-selected="false">Productos</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Comentarios</a>
+                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Interesados</a>
                                   </li>
                                 </ul>
                                
@@ -79,7 +79,7 @@
                                       </div>
                                            </div>
                                            <div class="tab-pane fade" id="pills-comentarios" role="tabpanel" aria-labelledby="pills-comentarios-tab">
-                                            <p class="text-center text-muted mt-5">No hay comentarios en para este usuario</p>
+                                            <p class="text-center text-muted mt-5">No hay interesados en sus productos</p>
                                           </div>
                                     
                                   </div>
