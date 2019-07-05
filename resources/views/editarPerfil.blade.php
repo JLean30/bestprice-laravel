@@ -1,19 +1,21 @@
 @extends('layouts.bestprices')
 @section('content')
 
-
+<form action="">
        <div class="container-fluid">
 
                         <div class="row shadow-sm">
                             
                                
                                 <div class="col-sm-12 col-md-3 col-lg-3 offset-lg-2 offset-md-1 text-center">
-                                        <img src="{{url('img/profiles/'.$profile->image)}}" alt="profile picture" class=" img-fluid img-circular">
-                                </div>
+                                        <label for="upload"><img alt="profile picture" class="img-fluid img-circular" id="preview" src="{{url('img/profiles/'.$profile->image)}}" alt="image to upload" /></label>
+                                        <input class="form-group" type="file" hidden name="photos" id="upload" onchange="previewExistent(this,'preview')">
+                                        <p class="text-center">Toque la Imagen para Cambiar</p>
+                                    </div>
                                 <div class="col-sm-12 col-md-7 col-lg-6 align-self-center centrado-cel">
-                                        <h3>{{$users->username}} @if ($editar) <i class="material-icons">Editar</i> @endIf </h3>
+                                        <h3>{{$users->username}}@if ($editar) <i class="material-icons">Editar</i> @endIf </h3>
                                         <p class="container-perfil__descripción">
-                                                {{$profile->description}}
+                                            <input class="form-control" type="text" name="description" value="{{$profile->description}}">
                                         </p>
                                 </div>
                                 <ul class="nav nav-pills mx-auto " id="pills-tab" role="tablist">
@@ -24,7 +26,7 @@
                                     <a class="nav-link" id="pills-productos-tab" data-toggle="pill" href="#pills-productos" role="tab" aria-controls="pills-productos" aria-selected="false">Productos</a>
                                   </li>
                                   <li class="nav-item">
-                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Comentarios</a>
+                                    <a class="nav-link" id="pills-comentarios-tab" data-toggle="pill" href="#pills-comentarios" role="tab" aria-controls="pills-comentarios" aria-selected="false">Interesados</a>
                                   </li>
                                 </ul>
                                
@@ -79,7 +81,7 @@
                                       </div>
                                            </div>
                                            <div class="tab-pane fade" id="pills-comentarios" role="tabpanel" aria-labelledby="pills-comentarios-tab">
-                                            <p class="text-center text-muted mt-5">No hay comentarios en para este usuario</p>
+                                            <p class="text-center text-muted mt-5">No hay Interesados en sus productos</p>
                                           </div>
                                     
                                   </div>
@@ -88,6 +90,11 @@
                                  
                               </div>
                             </div>
+                            <div class="text-center mt-4 mb-4">
+                                <button class="btn btn-secondary mr-2">Cancelar</button>
+                                <button class="btn btn-primary mr-2" type="submit">Aceptar</button>
+                            </div>
+                    </form>
                           
  @endsection
                   

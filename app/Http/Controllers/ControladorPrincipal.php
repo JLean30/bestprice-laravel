@@ -11,6 +11,33 @@ use App\User;
 
 class ControladorPrincipal extends Controller
 {
+    public function viewEditarPerfil($id){
+        $profiles = Profile::where('id', $id)->get();
+        $editar = false;
+        if (!$profiles->isEmpty()) {
+            foreach ($profiles as $profile) {
+                $users = User::with('profiles', 'products.images')->find($profile->user_id);
+            }
+
+            $profile = $users->profiles;
+
+
+
+            $products = $users->products;
+
+
+            if (Auth::id() === $id) {
+                $editar = true;
+            }
+
+
+
+
+            return view('editarPerfil', compact('editar', 'users', 'products', 'profile'));
+        } else {
+            abort(404);
+        }
+    }
 
     public function viewBusqueda(){
         $categories = Category::all();
