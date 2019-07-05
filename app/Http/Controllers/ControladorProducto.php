@@ -155,6 +155,28 @@ class ControladorProducto extends Controller
                     $product->price = $request ->input('precio');
                     $product->status = 'pendiente';
                     $product->save();//guarda producto
+                    $images = $product->images; 
+                
+                    
+                        
+                        
+                   for($i=0; $i<=3; $i++){
+                    if($request->hasFile('photo'.$i)){
+                       
+                        Storage::disk('products')->delete($images[$i]->image);
+                        $imgEdit= Image::where('image', $images[$i]->image)->get();
+                        foreach($imgEdit as $image){
+                            $image->image = $request->file('photo'.$i)->store('', 'products');
+                            $image->save();
+                        }
+                        
+
+                    }
+                   }
+                   
+                
+                    
+                        
                     
                     
                     return redirect()->route('producto', [$product]);

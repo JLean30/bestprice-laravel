@@ -8,14 +8,14 @@
                     <div class="row justify-content-center">
                         
                         <div class="col-xl-4 col-xs-12 float-right text-center">
-                                <label for="upload"><img class="img-fluid" id="preview" src="/img/products/{{$imagen}}" alt="image to upload" /></label>
-                                <input type="file" hidden name="photos[]"  id="upload" onchange="previewExistent(this,'preview')">    
+                             <img class="img-fluid" id="preview" src="/img/products/{{$imagen}}" alt="image to upload" />
+                                  
                                 <div class="row d-flex justify-content-around">
                                         <ul class="list-inline" id="imgThubnails-preview">
                                                         @isset($thubnails)
                                                         @for ($i = 0; $i < count($thubnails); $i++)
-                                                        <label for="upload{{$i+1}}"><li class="list-inline-item"><img class="img-fluid" id="{{$i+1}}" src={{$thubnails[$i]}} alt="image to upload" width="100px" /></li></label>
-                                                        <input type="file" hidden name="photos[]"  id="upload{{$i+1}}" onchange="previewExistent(this,{{$i+1}})">   
+                                                        <label for="upload{{$i}}"><li class="list-inline-item"><img class="img-fluid" id="{{$i}}" src={{$thubnails[$i]}} alt="image to upload" width="100px" /></li></label>
+                                                        <input type="file" hidden name="photo{{$i}}"  id="upload{{$i}}" onchange="previewExistent(this,{{$i}})">   
                                                          @endFor     
                                                 @endIsset
                                                 
