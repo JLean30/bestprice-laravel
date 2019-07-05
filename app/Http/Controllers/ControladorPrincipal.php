@@ -162,7 +162,7 @@ class ControladorPrincipal extends Controller
                         foreach($images as $image){
                             
                         array_push($usuariosInteresados,["nombre" => $userInterested->name, "imagen"=>'/img/products/'.$image->image, "descripcionProducto"=>$product->name,
-                         "id_interesado"=> $userInterested->id, "id_peticion"=> $statement->id] );
+                         "interesado"=> '/profile/'.$userInterested->id, "id_peticion"=> $statement->id] );
                          break;
                         }
                     }
