@@ -27,6 +27,12 @@ class CreateProductTable extends Migration
             $table->string('status');
             $table->timestamps();
         });
+        Schema::table('products', function($table)
+        {
+            $table->foreign('category_id')->references('id')->on('categorys')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    
+            });
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Role;
+use App\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -78,8 +79,8 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-        $role = new Role;
         $user = new User;
+        $profile= new Profile;
         $user->name =$data['name'];
         $user->lastName = $data['lastName'];
         $user->email = $data['email'];
@@ -89,10 +90,12 @@ class RegisterController extends Controller
         $user->location = $data['location'];
         $user->save();
         $user->roles()->attach(Role::where('name','user')->first());
+        $profile->user_id = $user->id;
+        $profile->image = 'default.png';
+        $profile->description = 'Aquí va una descripcion';
+        $profile->save();
         return $user;
-        /* metodo a utilizar para crear perfil default
-        DB::insert('insert into profiles(name, email, password, apellido) values(?,?,?,?)',[$nom, $ema, $pass, $apelli]); 
-        return "actualizado";*/
+        
     }
        //metodo sobreescrito de registerusers
     /**

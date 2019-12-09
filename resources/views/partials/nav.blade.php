@@ -1,10 +1,11 @@
 
                 <nav class="navbar navbar-expand-lg navbar-dark " >
                         <a class="navbar-brand" href="{{ url('/') }}">BESTPRICES</a>
-                        <form class="form-inline my-2 my-lg-0 search-navbar">
-                                <input class="form-control mr-sm-2 input-search" type="search" placeholder="¿Que estás buscando?" aria-label="Search">
-                                <button class="btn btn-outline-success btn-bestprices my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                              </form>
+                          <form class="form-inline my-2 my-lg-0 search-navbar" action="{{route('buscar-producto')}}" method="POST">
+                              @csrf
+                                <input class="form-control mr-sm-2 input-search" name="buscar" type="search" placeholder="¿Que estás buscando?" aria-label="Search">
+                                <button class="btn btn-dark btn-bestprices my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+                          </form>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button>
@@ -17,18 +18,9 @@
                             <li class="nav-item">
                               <a class="nav-link" href="#articulos-nuevos">Articulos Destacados</a>
                             </li>
-                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Categorias
-                              </a>
-                              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">tarjetas madre</a>
-                                <a class="dropdown-item" href="#">Tarjeta de video</a>
-                                <div class="dropdown-divider"></div>
-                               
-                              </div>
+                            <li class="nav-item">
+                              <a class="nav-link" href="/anadir-producto">Añadir Producto</a>
                             </li>
-                            
                             <li class="nav-item">
                                 @guest
                               <a class="nav-link " href="{{ route('login') }}">Iniciar Sesión</a>

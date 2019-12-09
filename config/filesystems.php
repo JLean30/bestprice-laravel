@@ -60,6 +60,12 @@ return [
             'url' => env('APP_URL'),
             'visibility' => 'public',
         ],
+        'profiles' => [
+            'driver' => 'local',
+            'root' => ('img/profiles'),
+            'url' => env('APP_URL'),
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

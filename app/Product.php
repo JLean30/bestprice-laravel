@@ -10,17 +10,30 @@ class Product extends Model
 
     public function user()
     {
+<<<<<<< HEAD
 
         return $this->hasMany(User::class);
+=======
+        return $this->belongsTo(User::class);
+    }
+
+    public function categories(){
+        return $this->hasOne('App\Category', 'id', 'category_id');
+>>>>>>> test
     }
     public function images(){
         return $this->belongsToMany(Image::class)->withTimestamps();
     
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> test
     public function getNextId()
     {
 
         $statement = DB::select("show table status like 'products'");
+<<<<<<< HEAD
 
         return $statement[0]->Auto_increment;
     }
@@ -29,6 +42,10 @@ class Product extends Model
         $statement= DB::select('select * from img_product where product_id = ?', [$id]);
      
         return $statement;
+=======
+
+        return $statement[0]->Auto_increment;
+>>>>>>> test
     }
     /**
      * The attributes that are mass assignable.
