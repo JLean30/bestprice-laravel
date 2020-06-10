@@ -55,6 +55,21 @@
                                   <div class="tab-pane fade" id="pills-productos" role="tabpanel" aria-labelledby="pills-productos-tab">
                                       <h3 class="color-title linea-horizontal tamanno-title__cel">Articulos en venta</h3>
                                      
+<<<<<<< HEAD
+                                      @foreach($productos->products as $products_user)
+                                      <div class="card-deck">
+                                        <div class="card">
+                                            <p class="bg-dark text-light position-absolute card-tipoProducto ">{{$products_user->condition}}</p>
+                                          <img class="card-img-top" src="{{url('img/products/'.$imagen)}}" alt="{{$products_user->name}}">
+                                          <div class="card-body">
+                                            <h5 class="card-title color-title">{{$products_user->name}}</h5>
+                                            <p class="card-text">
+                                              {{$products_user->descripcion}}
+                                            </p>
+                                            <p class="card-text"><small class="text-muted">Añadido por <a href="./profile.html" class="text-info">thanos</a> </small></p>
+                                            <p class="card-text"><small class="text-primary">₡{{$products_user->price}}</small></p>
+                                            
+=======
                                       <div class="container container-productos " >
                                           
                                       <div class="card-deck">
@@ -73,6 +88,7 @@
                                               <p class="card-text text-right color-title">₡{{$product->price}}</p>
                                               
                                             </div>
+>>>>>>> test
                                           </div>
                                           @endforeach
                                           <!--final card-->

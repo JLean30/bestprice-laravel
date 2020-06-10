@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Product;
 use App\Image;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Facades\Storage;
+>>>>>>> test
 use Faker\Provider\cs_CZ\DateTime;
 use Illuminate\Support\Carbon;
 
@@ -17,6 +20,8 @@ class ControladorProducto extends Controller
     public function  __construct(){
         $this->middleware('auth');
      
+<<<<<<< HEAD
+=======
     }
  
     //metodo para la creacion de interesado por producto
@@ -33,7 +38,9 @@ class ControladorProducto extends Controller
            return redirect()->back();
         }
 
+>>>>>>> test
     }
+ 
     //validacion de los parametros enviados para su respectivo error falta implementar los valores son del user
     public function validator(array $data)
     {
@@ -52,6 +59,45 @@ class ControladorProducto extends Controller
     }
     //metodo agregar producto
     public function add(Request $request){
+<<<<<<< HEAD
+        
+        $photos= $request->file('photos');
+        $len= count($photos);
+       
+        
+        //verificacion si el campo de la foto es valido osea la imagen esta subida?
+        if($len != 0){
+            //instancia producto
+            $product= new Product;
+            $product ->name = $request ->input('titulo');
+            $product ->user_id = Auth::id();//obtencion del id del usuario logueado
+            $product ->maker = $request ->input('fabricante');
+            $product ->category_id = $request ->input('select-category');
+            $product ->phone = $request ->input('telefono');
+            $product ->location = $request ->input('ubicacion');
+            $product ->description = $request ->input('detalle');
+            $product ->condition = $request ->input('select-condition') ;
+            $product ->price = $request ->input('precio');
+            $product ->status = 'pendiente';
+            $product->save();//guarda producto
+           
+            for($i=0;$i<$len;$i++){
+                if($photos[$i] != ""){
+                    $images= new Image;
+                    $images->image = $photos[$i]->store('', 'products');
+                    $images->save();
+                    $product->images()->attach($images);
+                }
+                
+            
+            }
+        
+        }
+        
+        
+    }
+
+=======
         
         $photos= $request->file('photos');
         $len= count($photos);
@@ -64,6 +110,7 @@ class ControladorProducto extends Controller
             'detalle' => 'required|max:1000000',
             'precio' => 'required|integer'
         ]);
+>>>>>>> test
 
         if($validateData -> fails()){
             return redirect()->back()->withInput()->withErrors($validateData->errors());

@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+
+
+//section function preview
+        $cantImg=0;
+        function addInput(){
+=======
 //cambios randall
 (function() {
     'use strict';
@@ -40,6 +47,7 @@ function previewExistent(input,id) {
 $cantImg=$("body #imgThubnails-preview").children("li").length;
         function addInput(){
             $cantImg=$("body #imgThubnails-preview").children("li").length;
+>>>>>>> test
             //cambios de id para su respectivo input las imagenes
             $('#upload').attr('id',"upload"+$cantImg);
             $('#imgThubnails-preview').append('<input type="file" hidden name="photos[]"  id="upload" onchange="filePreview(this)">');
@@ -49,11 +57,19 @@ $cantImg=$("body #imgThubnails-preview").children("li").length;
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function (e) {
+<<<<<<< HEAD
+            if($('#preview').attr('src') === "img/imagen.png"){
+                $('#preview').replaceWith('<img src="'+e.target.result+'" class="img-fluid"/>');
+                //Aqui se agrega la parte del label que hace al llamado al input
+                //hay que modificar con clases para que se vea bien en los diapositivos
+                $('#imgThubnails-preview').append('<label id="label-thubnails" for="upload"><img class="img-fluid" src="img/imagen.png" alt="image to upload" width="100px" /></label> ');
+=======
             if($('#preview').attr('src') === "/img/imagen.png"){
                 $('#preview').replaceWith('<img src="'+e.target.result+'" class="img-fluid"/>');
                 //Aqui se agrega la parte del label que hace al llamado al input
                 //hay que modificar con clases para que se vea bien en los diapositivos
                 $('#imgThubnails-preview').append('<label id="label-thubnails" for="upload"><img class="img-fluid" src="/img/imagen.png" alt="image to upload" width="100px" /></label> ');
+>>>>>>> test
                 
                 addInput();
                 $cantImg++;
